@@ -1,0 +1,36 @@
+/* ProgressBar — transform-driven (no layout thrash).
+ * Track is fixed-width; fill is 100% width but scaled via transform-X. */
+.root {
+  width: 100%;
+}
+
+.track {
+  width: 100%;
+  border-radius: var(--k-radius-pill);
+  background: var(--k-color-surface-fog);
+  overflow: hidden;
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--k-radius-pill);
+  transform-origin: left center;
+  transform: scaleX(var(--progress, 0));
+  transition: transform var(--k-duration-normal) var(--k-ease-out-quart);
+  will-change: transform;
+}
+
+/* Sizes */
+.size-sm .track,
+.size-sm .fill {
+  height: 4px;
+}
+
+.size-md .track,
+.size-md .fill {
+  height: 6px;
+}
+
+/* Color — single brand chord */
+.color-mangue .fill { background: var(--k-color-green-karagua-deep); }

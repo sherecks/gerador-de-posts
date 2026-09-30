@@ -1,0 +1,23 @@
+# deps and builds
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# secrets: the OpenAI key lives in web/.env.local
+.env
+.env*.local
+
+# OS and editor tools
+.DS_Store
+.voicecode/
+
+# OSM tile cache: scripts/mapa-babitonga/build.py re-fetches it when missing
+web/scripts/mapa-babitonga/tiles/
+
+# test copies made while reviewing layouts
+data/carousels/zz-*.json
+
+# photos: camera originals (14-18 MB each), kept out of git; see web/README.md
+web/public/images/*
+!web/public/images/.gitkeep

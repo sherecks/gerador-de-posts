@@ -1,0 +1,948 @@
+/*
+ * Figure catalog styling.
+ *
+ * Color never appears here as a literal: every value comes from the
+ * `--fig-*` tokens the slide surface sets (SlideStage.module.css), so a
+ * figure is on-brand by construction and legible on shell, carbon and lime
+ * alike. Marks carry the accent; text always wears ink tokens, never the
+ * data color.
+ *
+ * Measurements are in `--u` (1cqw of the slide container times
+ * --fig-scale), so a figure is faithful at filmstrip size and at 1080×1350
+ * export without a second stylesheet, and FigureFit can scale it to fill
+ * the space its slide leaves. No text here goes below 2.6u: 28px at 1080,
+ * the smallest size that still reads on a phone feed.
+ *
+ * Two deliberate departures from generic chart practice, both because the
+ * brand outranks the convention (RNF03) or the medium does:
+ *   - Data ends are square, not 4px-rounded: DESIGN.md forbids radius.
+ *   - Every bar/band is directly labeled. On a feed slide there is no
+ *     tooltip, no axis and no table view to fall back on, so a value that
+ *     isn't printed is a value nobody can read.
+ */
+
+/* A real <length>: computed once on .figure (against the slide) and inherited
+   as px, so a nested size container (the map) can't change what 1u means. */
+@property --u {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+.figure {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(4 * var(--u));
+  color: var(--fig-ink);
+  /* One figure unit: 1cqw of the slide, times the scale FigureFit found for
+     the room this slide leaves. Every length below is a multiple of it, so
+     text, marks and gaps grow together and the drawing keeps its proportions. */
+  --u: calc(1cqw * var(--fig-scale, 1));
+}
+
+/* Separation between touching marks is a gap in the surface color, never a
+   border drawn around the mark. */
+.gap {
+  --surface-gap: calc(0.4 * var(--u));
+}
+
+/* ── comparacao — bars, one baseline, value at the tip ──── */
+
+.compRow {
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.2 * var(--u));
+}
+
+.compRow + .compRow {
+  margin-top: calc(3.4 * var(--u));
+}
+
+.compHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: calc(2 * var(--u));
+}
+
+.compLabel {
+  font-size: calc(3 * var(--u));
+  line-height: var(--k-line-height-snug);
+  color: var(--fig-ink);
+}
+
+.compValue {
+  flex: 0 0 auto;
+  font-family: var(--k-font-family-mono);
+  font-size: calc(3.6 * var(--u));
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--fig-ink);
+}
+
+.compTrack {
+  height: calc(6.4 * var(--u));
+  background: var(--fig-track);
+}
+
+.compFill {
+  height: 100%;
+  background: var(--fig-accent);
+}
+
+/* De-emphasised bar when one sibling carries `destaque`. */
+.compFillMuted {
+  background: var(--fig-track);
+  outline: calc(0.3 * var(--u)) solid var(--fig-rule);
+  outline-offset: calc(-0.3 * var(--u));
+}
+
+.compUnit {
+  margin-top: calc(1 * var(--u));
+  font-family: var(--k-font-family-mono);
+  font-size: calc(2.6 * var(--u));
+  letter-spacing: var(--k-tracking-wide);
+  text-transform: uppercase;
+  color: var(--fig-ink-muted);
+}
+
+/* ── analogia — an equivalence, not a pile of icons ────── */
+
+.analogia {
+  display: flex;
+  flex-direction: column;
+  gap: calc(3.4 * var(--u));
+}
+
+.equiv {
+  display: flex;
+  align-items: center;
+  gap: calc(3 * var(--u));
+}
+
+.equivSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(1.4 * var(--u));
+  flex: 0 0 auto;
+}
+
+.equivSideWide {
+  flex: 1 1 auto;
+  align-items: flex-start;
+}
+
+.equivMark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(16 * var(--u));
+  height: calc(16 * var(--u));
+  background: var(--fig-accent);
+}
+
+.equivMarkIcon {
+  width: calc(9 * var(--u));
+  height: calc(9 * var(--u));
+  color: var(--fig-on-accent);
+}
+
+.equivSign {
+  flex: 0 0 auto;
+  font-family: var(--k-font-family-mono);
+  font-size: calc(5 * var(--u));
+  font-weight: 600;
+  color: var(--fig-ink-muted);
+}
+
+.equivGrid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: calc(1 * var(--u));
+  width: 100%;
+}
+
+.equivIcon {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  color: var(--fig-accent);
+}
+
+.equivOverflow {
+  grid-column: span 2;
+  align-self: center;
+  font-family: var(--k-font-family-mono);
+  font-size: calc(2.6 * var(--u));
+  color: var(--fig-ink-muted);
+}
+
+.equivCaption {
+  font-size: calc(2.8 * var(--u));
+  line-height: var(--k-line-height-snug);
+  color: var(--fig-ink-muted);
+  text-align: center;
+  max-width: 18ch;
+}
+
+.equivCaptionWide {
+  text-align: left;
+  max-width: 34ch;
+}
+
+.analogiaAfirmacao {
+  margin: 0;
+  font-size: calc(3.4 * var(--u));
+  line-height: var(--k-line-height-snug);
+  max-width: 30ch;
+  color: var(--fig-ink);
+}
+
+.analogiaDado {
+  display: flex;
+  align-items: baseline;
+  gap: calc(2.4 * var(--u));
+  padding-top: calc(2.6 * var(--u));
+  border-top: calc(0.25 * var(--u)) solid var(--fig-rule);
+}
+
+.analogiaValue {
+  font-family: var(--k-font-family-mono);
+  font-size: calc(7 * var(--u));
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--fig-ink);
+}
+
+.analogiaLabel {
+  font-size: calc(2.8 * var(--u));
+  line-height: var(--k-line-height-snug);
+  color: var(--fig-ink-muted);
+}
+
+/* ── fluxo — a stepper with a real rail and a direction ── */
+
+.fluxo {
+  display: flex;
+  flex-direction: column;
+}
+
+.fluxoStep {
+  position: relative;
+  display: grid;
+  grid-template-columns: calc(7 * var(--u)) 1fr;
+  gap: calc(3 * var(--u));
+  padding-bottom: calc(3.2 * var(--u));
+}
+
+.fluxoStep:last-child {
+  padding-bottom: 0;
+}
+
+/* The rail runs behind the markers, from this step's marker to the next. */
+.fluxoStep:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: calc(3.35 * var(--u));
+  top: calc(7 * var(--u));
+  bottom: 0;
+  width: calc(0.3 * var(--u));
+  background: var(--fig-rule);
+}
+
+.fluxoMarker {
+  position: relative;
+  z-index: 1;
+  width: calc(7 * var(--u));
+  height: calc(7 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--k-font-family-mono);
+  font-size: calc(2.8 * var(--u));
+  font-weight: 600;
+  background: var(--fig-surface);
+  outline: calc(0.3 * var(--u)) solid var(--fig-accent);
+  outline-offset: calc(-0.3 * var(--u));
+  color: var(--fig-ink);
+}
+
+/* The destination reads as arrived: filled, not outlined. */
+.fluxoMarkerLast {
+  background: var(--fig-accent);
+  color: var(--fig-on-accent);
+  outline: none;
+}
+
+.fluxoBody {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.8 * var(--u));
+  padding-top: calc(0.6 * var(--u));
+}
+
+.fluxoLabel {
+  font-size: calc(3.2 * var(--u));
+  font-weight: var(--k-font-weight-semibold);
+  line-height: var(--k-line-height-snug);
+  color: var(--fig-ink);
+}
+
+.fluxoDetalhe {
+  font-size: calc(2.8 * var(--u));
+  line-height: var(--k-line-height-snug);
+  color: var(--fig-ink-muted);
+}
+
+/* ── ciclo — arcs with arrowheads, labels outside ──────── */
+
+/* The ring is deliberately small: the labels live OUTSIDE it, and a label that
+   collides with its neighbour costs more than a big circle buys. Ring box calc(52 * var(--u))
+   + labels calc(20 * var(--u)) anchored at 42% of the box keeps the widest case (a label due
+   east) inside the slide's calc(84 * var(--u)) of usable width. */
+.ciclo {
+  position: relative;
+  width: 100%;
+  max-width: calc(52 * var(--u));
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.cicloSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cicloArc {
+  fill: none;
+  stroke: var(--fig-accent);
+  stroke-width: 1.6;
+}
+
+.cicloArrow {
+  fill: var(--fig-accent);
+}
+
+.cicloNode {
+  fill: var(--fig-surface);
+  stroke: var(--fig-accent);
+  stroke-width: 1.6;
+}
+
+.cicloNodeText {
+  fill: var(--fig-ink);
+  font-family: var(--k-font-family-mono);
+  /* viewBox units: 5.6 of 100 is ~30px at 1080 for the default ring. */
+  font-size: 5.6px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.cicloLabel {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: calc(20 * var(--u));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.8 * var(--u));
+  text-align: center;
+}
+
+/* North of the ring: the label's bottom edge meets the anchor, so it grows upward, text next to the node. */
+.cicloLabelTop {
+  transform: translate(-50%, -100%);
+}
+
+/* South: its top edge does and it grows downward; column-reverse keeps the text next to the node. */
+.cicloLabelBottom {
+  transform: translate(-50%, 0);
+  flex-direction: column-reverse;
+}
+
+/* With icons the labels above and below reach beyond the ring's box: leave them room. */
+.cicloIcons {
+  margin-block: calc(9 * var(--u));
+}
+
+/* West of the ring: the label's right edge meets the anchor. */
+.cicloLabelStart {
+  transform: translate(-100%, -50%);
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* East of the ring: its left edge does. */
+.cicloLabelEnd {
+  transform: translate(0, -50%);
+  align-items: flex-start;
+  text-align: left;
+}
+
+.cicloIcon {
+  width: calc(4.6 * var(--u));
+  height: calc(4.6 * var(--u));
+  color: var(--fig-accent);
+}
+
+.cicloText {
+  font-size: calc(2.8 * var(--u));
+  line-height: var(--k-line-height-snug);
+  color: var(--fig-ink);
+}
+
+/* ── camadas — a section, deepening downward ───────────── */
+
+.camadas {
+  display: grid;
+  grid-template-columns: calc(5 * var(--u)) 1fr;
+  gap: calc(2.4 * var(--u));
+}
+
+.camadasRail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(1 * var(--u));
+  padding: calc(0.6 * var(--u)) 0;
+}
+
+.camadasRailLine {
+  flex: 1 1 auto;
+  width: calc(0.3 * var(--u));
+  background: var(--fig-rule);
+}
+
+.camadasRailArrow {
+  width: 0;
+  height: 0;
+  border-left: calc(1.1 * var(--u)) solid transparent;
+  border-right: calc(1.1 * var(--u)) solid transparent;
+  border-top: calc(1.5 * var(--u)) solid var(--fig-rule);
+}
+
+.camadasRailCaption {
+  font-family: var(--k-font-family-mono);
+  font-size: calc(2.6 * var(--u));
+  letter-spacing: var(--k-tracking-wide);
+  text-transform: uppercase;
+  color: var(--fig-ink-muted);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.camadasBands {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.4 * var(--u));
+}
+
+.camadaBand {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.5 * var(--u));
+  padding: calc(3 * var(--u)) calc(3.2 * var(--u));
+}
+
+/* The one place text may leave the ink tokens: a label set inside a filled
+   band picks light or dark by that band's luminance, or it fails contrast. */
+.inkDark {
+  color: #1a2332;
+}
+
+.inkLight {
+  color: #f7f5f0;
+}
+
+.camadaLabel {
+  font-size: calc(3.1 * var(--u));
+  font-weight: var(--k-font-weight-semibold);
+  line-height: var(--k-line-height-snug);
+}
+
+.camadaDetalhe {
+  font-size: calc(2.7 * var(--u));
+  line-height: var(--k-line-height-snug);
+  opacity: 0.82;
+}
+
+/* ── linha-do-tempo — a rail, markers, the last one landed ── */
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(3.6 * var(--u));
+  padding-left: calc(6 * var(--u));
+}
+
+.timelineRail {
+  position: absolute;
+  left: calc(1.55 * var(--u));
+  top: calc(1.4 * var(--u));
+  bottom: calc(1.4 * var(--u));
+  width: calc(0.3 * var(--u));
+  background: var(--fig-rule);
+}
+
+.timelineItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.5 * var(--u));
+}
+
+/* The marker carries a surface ring so it reads as sitting on the rail. */
+.timelineMarker {
+  position: absolute;
+  left: calc(-6 * var(--u));
+  top: calc(0.6 * var(--u));
+  width: calc(3.4 * var(--u));
+  height: calc(3.4 * var(--u));
+  background: var(--fig-surface);
+  outline: calc(0.35 * var(--u)) solid var(--fig-accent);
+  outline-offset: calc(-0.35 * var(--u));
+  box-shadow: 0 0 0 calc(0.6 * var(--u)) var(--fig-surface);
+}
+
+.timelineMarkerLast {
+  background: var(--fig-accent);
+}
+
+.timelineDate {
+  font-family: var(--k-font-family-mono);
+  font-size: calc(2.7 * var(--u));
+  letter-spacing: var(--k-tracking-wide);
+  color: var(--fig-ink-muted);
+}
+
+.timelineLabel {
+  font-size: calc(3 * var(--u));
+  line-height: var(--k-line-height-snug);
+  color: var(--fig-ink);
+}
+
+/* ── balanca — two sides, one of them the point ────────── */
+
+.balanca {
+  display: grid;
+  grid-template-columns: 1fr calc(0.25 * var(--u)) 1fr;
+  gap: calc(3 * var(--u));
+  align-items: stretch;
+}
+
+.balancaRule {
+  background: var(--fig-rule);
+}
+
+.balancaSide {
+  display: flex;
+  flex-direction: column;
+  gap: calc(2 * var(--u));
+  min-width: 0;
+}
+
+.balancaHead {
+  padding: calc(1.6 * var(--u)) calc(2 * var(--u));
+  font-family: var(--k-font-family-mono);
+  font-size: calc(2.6 * var(--u));
+  letter-spacing: var(--k-tracking-wide);
+  text-transform: uppercase;
+  background: var(--fig-track);
+  color: var(--fig-ink);
+}
+
+.balancaHeadAccent {
+  background: var(--fig-accent);
+  color: var(--fig-on-accent);
+}
+
+.balancaList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.8 * var(--u));
+}
+
+.balancaItem {
+  display: grid;
+  grid-template-columns: calc(1.6 * var(--u)) 1fr;
+  gap: calc(1.6 * var(--u));
+  align-items: start;
+  font-size: calc(2.8 * var(--u));
+  line-height: var(--k-line-height-snug);
+  color: var(--fig-ink);
+}
+
+.balancaBullet {
+  width: calc(1.6 * var(--u));
+  height: calc(1.6 * var(--u));
+  margin-top: calc(1 * var(--u));
+  background: var(--fig-accent);
+}
+
+.balancaBulletMuted {
+  background: var(--fig-rule);
+}
+
+/* ── mapa — the real bay, places where they really are ── */
+
+/* The frame's leftover box, as a size container so the map can fit whichever
+   of width or height runs out first. */
+.mapa {
+  flex: 1 1 0;
+  min-height: calc(30 * var(--u));
+  width: 100%;
+  container-type: size;
+  display: grid;
+  place-items: center;
+  /* Map labels keep one size: FigureFit may grow the figure, but a bigger label
+     on the same map only collides sooner. On this element 1cqw is still the
+     slide's (its own container units apply to its children), and --u is a
+     registered length, so the children inherit it in px. */
+  --u: 1cqw;
+}
+
+.mapaBox {
+  position: relative;
+  width: min(100cqw, 100cqh * var(--mapa-ratio));
+  aspect-ratio: var(--mapa-ratio);
+  /* So the scale bar can be sized in this box's cqw from inside the key panel. */
+  container-type: inline-size;
+  /* The base map brings its own colors (OSM standard), whatever the slide's
+     surface: everything drawn on it reads these tokens, white halos and dark
+     ink, the way OSM itself sets its labels. */
+  --fig-surface: #ffffff;
+  --fig-ink: var(--k-color-surface-carbon);
+  --fig-ink-muted: rgba(26, 35, 50, 0.7);
+}
+
+.mapaImagem {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* MapaPlacer sets data-lado to the first side where the label collides with nothing. */
+.mapaPonto {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: calc(1 * var(--u));
+  transform: translate(calc(-1.2 * var(--u)), -50%);
+}
+
+.mapaPonto[data-lado='esquerda'] {
+  flex-direction: row-reverse;
+  text-align: right;
+  transform: translate(calc(-100% + 1.2 * var(--u)), -50%);
+}
+
+.mapaPonto[data-lado='acima'] {
+  flex-direction: column-reverse;
+  text-align: center;
+  transform: translate(-50%, calc(-100% + 1.2 * var(--u)));
+}
+
+.mapaPonto[data-lado='abaixo'] {
+  flex-direction: column;
+  text-align: center;
+  transform: translate(-50%, calc(-1.2 * var(--u)));
+}
+
+.mapaPonto[data-lado='centro'] {
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+/* Ink, not accent: the base map is full of greens, a dark square stands out on all of them. */
+.mapaDot {
+  flex: 0 0 auto;
+  width: calc(2.4 * var(--u));
+  height: calc(2.4 * var(--u));
+  background: var(--fig-ink);
+  box-shadow: 0 0 0 calc(0.5 * var(--u)) var(--fig-surface);
+}
+
+.mapaTexto {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.2 * var(--u));
+}
+
+/* A white halo keeps a name legible over the base map's roads, parks and shore. */
+.mapaTexto {
+  text-shadow:
+    0 0 calc(0.3 * var(--u)) var(--fig-surface),
+    0 0 calc(0.3 * var(--u)) var(--fig-surface),
+    0 0 calc(0.6 * var(--u)) var(--fig-surface),
+    0 0 calc(0.9 * var(--u)) var(--fig-surface);
+}
+
+.mapaLabel {
+  font-size: calc(2.8 * var(--u));
+  font-weight: var(--k-font-weight-semibold);
+  line-height: 1.15;
+  white-space: nowrap;
+  color: var(--fig-ink);
+}
+
+.mapaNota {
+  font-size: calc(2.6 * var(--u));
+  line-height: 1.15;
+  white-space: nowrap;
+  color: var(--fig-ink-muted);
+}
+
+/* Water names: italic, no dot, the cartographic convention for "this is the sea". */
+.mapaAgua .mapaLabel {
+  max-width: 6.5em;
+  white-space: normal;
+  font-size: calc(2.6 * var(--u));
+  font-style: italic;
+  font-weight: 400;
+  color: var(--fig-ink-muted);
+}
+
+/* An area (the island): spaced capitals across it, not a point on it. */
+.mapaArea .mapaLabel {
+  max-width: 9em;
+  white-space: normal;
+  font-family: var(--slide-font-mono);
+  font-size: calc(2.6 * var(--u));
+  font-weight: 500;
+  letter-spacing: var(--k-tracking-wide);
+  text-transform: uppercase;
+  color: var(--fig-ink-muted);
+}
+
+.mapaRecede .mapaDot {
+  background: var(--fig-ink-muted);
+}
+
+.mapaRecede .mapaLabel {
+  font-weight: 400;
+  color: var(--fig-ink-muted);
+}
+
+/* Bottom-left key on a white panel: the scale and the credit (ODbL). */
+.mapaChave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(1 * var(--u));
+  padding: calc(1.2 * var(--u)) calc(1.6 * var(--u)) calc(1 * var(--u));
+  background: var(--fig-surface);
+}
+
+.mapaEscala {
+  box-sizing: border-box;
+  height: calc(2.2 * var(--u));
+  padding: 0 0 calc(0.5 * var(--u)) calc(0.8 * var(--u));
+  border: calc(0.3 * var(--u)) solid var(--fig-ink);
+  border-top: none;
+  display: flex;
+  align-items: flex-end;
+  font-family: var(--slide-font-mono);
+  font-size: calc(2.6 * var(--u));
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--fig-ink);
+}
+
+.mapaCredito {
+  font-family: var(--slide-font-mono);
+  font-size: calc(2.6 * var(--u));
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--fig-ink-muted);
+}
+
+.mapaLegenda {
+  --u: 1cqw; /* same size whatever FigureFit does, like the labels on the map */
+  font-family: var(--k-font-family-mono);
+  font-size: calc(2.6 * var(--u));
+  letter-spacing: var(--k-tracking-wide);
+  color: var(--fig-ink-muted);
+}
+
+/* ── serie — a line that starts at zero, every point labeled ── */
+
+/* The plot takes every bit of height the frame has left after the axis:
+   a series is read by its slope, and a taller box is a steeper, clearer one. */
+.serie {
+  position: relative;
+  width: 100%;
+  flex: 1 1 0;
+  min-height: calc(30 * var(--u));
+  max-height: calc(64 * var(--u));
+}
+
+.serieSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.serieBase {
+  stroke: var(--fig-rule);
+  stroke-width: 1;
+}
+
+.serieLine {
+  fill: none;
+  stroke: var(--fig-accent);
+  stroke-width: 3;
+  stroke-linejoin: miter;
+}
+
+.seriePoint {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(1 * var(--u));
+  transform: translate(-50%, -100%);
+}
+
+/* Edge points: the dot stays on its point, the label grows inward. */
+.seriePointStart {
+  align-items: flex-start;
+  transform: translate(calc(-1.3 * var(--u)), -100%);
+}
+
+.seriePointEnd {
+  align-items: flex-end;
+  transform: translate(calc(-100% + 1.3 * var(--u)), -100%);
+}
+
+.serieDot {
+  width: calc(2.6 * var(--u));
+  height: calc(2.6 * var(--u));
+  background: var(--fig-accent);
+  box-shadow: 0 0 0 calc(0.6 * var(--u)) var(--fig-surface);
+  transform: translateY(50%);
+}
+
+.serieDotMuted {
+  background: var(--fig-ink-muted);
+}
+
+.serieValue {
+  font-family: var(--k-font-family-mono);
+  font-size: calc(2.9 * var(--u));
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--fig-ink);
+}
+
+.serieMuted {
+  color: var(--fig-ink-muted);
+  font-weight: 500;
+}
+
+.serieAxis {
+  position: relative;
+  width: 100%;
+  height: calc(4 * var(--u));
+  border-top: calc(0.25 * var(--u)) solid var(--fig-rule);
+}
+
+.serieTick {
+  position: absolute;
+  top: calc(1.2 * var(--u));
+  transform: translateX(-50%);
+  font-family: var(--k-font-family-mono);
+  font-size: calc(2.6 * var(--u));
+  letter-spacing: var(--k-tracking-wide);
+  white-space: nowrap;
+  color: var(--fig-ink-muted);
+}
+
+.serieTickStart {
+  transform: translateX(calc(-1.3 * var(--u)));
+}
+
+.serieTickEnd {
+  transform: translateX(calc(-100% + 1.3 * var(--u)));
+}
+
+/* ── anel — one share of a whole ── */
+
+.anel {
+  position: relative;
+  width: calc(46 * var(--u));
+  aspect-ratio: 1;
+  align-self: center;
+}
+
+.anelSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.anelTrack {
+  fill: none;
+  stroke: var(--fig-track);
+  stroke-width: 11;
+}
+
+.anelArc {
+  fill: none;
+  stroke: var(--fig-accent);
+  stroke-width: 11;
+  stroke-linecap: butt;
+}
+
+.anelValue {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--k-font-family-mono);
+  font-size: calc(10 * var(--u));
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--fig-ink);
+}
+
+.anelText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(1.6 * var(--u));
+  text-align: center;
+}
+
+.anelRotulo {
+  font-size: calc(3.6 * var(--u));
+  line-height: var(--k-line-height-snug);
+  max-width: 34ch;
+  color: var(--fig-ink);
+}
+
+.anelContexto {
+  font-size: calc(2.8 * var(--u));
+  line-height: var(--k-line-height-snug);
+  max-width: 38ch;
+  color: var(--fig-ink-muted);
+}

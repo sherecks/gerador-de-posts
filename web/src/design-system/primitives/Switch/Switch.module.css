@@ -1,0 +1,92 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--k-space-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.track {
+  position: relative;
+  border: none;
+  border-radius: var(--k-radius-pill);
+  background-color: var(--k-color-surface-fog);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background-color var(--k-duration-fast) var(--k-ease-spring);
+}
+
+/* Invisible tap-area expansion to reach 44x44 touch target.
+ * The track stays visually 36/44 wide, but the hit area is full WCAG. */
+.track::before {
+  content: '';
+  position: absolute;
+  inset: 50% 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.track:focus-visible {
+  outline: none;
+  box-shadow: var(--k-focus-ring);
+}
+
+.thumb {
+  display: block;
+  background-color: var(--k-color-surface-white);
+  border-radius: var(--k-radius-full);
+  box-shadow: var(--k-shadow-sm);
+  transition: transform var(--k-duration-fast) var(--k-ease-spring);
+}
+
+/* Size: sm */
+.size-sm {
+  width: 36px;
+  height: 20px;
+}
+
+.size-sm .thumb {
+  width: 16px;
+  height: 16px;
+  margin: 2px;
+}
+
+.size-sm.checked .thumb {
+  transform: translateX(16px);
+}
+
+/* Size: md */
+.size-md {
+  width: 44px;
+  height: 24px;
+}
+
+.size-md .thumb {
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+}
+
+.size-md.checked .thumb {
+  transform: translateX(20px);
+}
+
+/* Accents when checked */
+.checked.accent-mangue {
+  background-color: var(--k-color-mangue);
+}
+
+.label {
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-base);
+  font-weight: var(--k-font-weight-regular);
+  color: var(--k-color-text-primary);
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}

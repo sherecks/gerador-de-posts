@@ -1,0 +1,79 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-3, 12px);
+}
+
+.verdict {
+  font-family: var(--k-font-family-mono);
+  font-size: var(--k-font-size-xs);
+  letter-spacing: var(--k-tracking-wide);
+  text-transform: uppercase;
+  padding: 10px 12px;
+  border-left: 3px solid currentColor;
+}
+
+.blocked {
+  color: var(--k-color-coral);
+  background: var(--k-color-coral-subtle);
+}
+
+.clear {
+  color: var(--k-color-green-karagua-deep);
+  background: var(--k-color-green-karagua-100);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-2, 8px);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1.6em 1fr;
+  gap: 8px;
+  align-items: start;
+  font-size: var(--k-font-size-sm);
+  line-height: var(--k-line-height-normal);
+}
+
+.mark {
+  font-family: var(--k-font-family-mono);
+  font-size: var(--k-font-size-xs);
+  line-height: 1.7;
+}
+
+.pass .mark {
+  color: var(--k-color-positive);
+}
+
+.fail .mark {
+  color: var(--k-color-coral);
+}
+
+.manual .mark,
+.manual .label {
+  color: var(--k-color-text-secondary);
+}
+
+.blockingTag {
+  font-family: var(--k-font-family-mono);
+  font-size: 11px;
+  letter-spacing: var(--k-tracking-wide);
+  text-transform: uppercase;
+  color: var(--k-color-coral);
+  margin-left: 6px;
+}
+
+.findings {
+  margin: 4px 0 0;
+  padding-left: 16px;
+  font-size: var(--k-font-size-xs);
+  color: var(--k-color-text-secondary);
+  font-family: var(--k-font-family-mono);
+  line-height: var(--k-line-height-normal);
+}

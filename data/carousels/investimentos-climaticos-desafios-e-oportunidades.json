@@ -1,0 +1,125 @@
+{
+  "id": "investimentos-climaticos-desafios-e-oportunidades",
+  "brand": "karagua",
+  "title": "Investimentos climáticos: desafios e oportunidades",
+  "status": "rascunho",
+  "createdAt": "2026-09-30T20:13:33.103Z",
+  "pauta": {
+    "resumo": "O caso de BH ilustra a contradição entre o aumento dos recursos climáticos e sua estrutura majoritariamente reembolsável, que dificulta investimentos em adaptação pura — exatamente o tipo de projeto que o carbono azul em manguezais pode viabilizar com recursos não reembolsáveis.",
+    "source": {
+      "title": "Recursos para clima crescem no Brasil, mas ainda são insuficientes e instáveis - Observatório do Clima",
+      "url": "https://oc.eco.br/recursos-para-clima-crescem-no-brasil-mas-ainda-sao-insuficientes-e-instaveis/",
+      "publisher": "Observatório do Clima"
+    }
+  },
+  "framework": "hook-prova-payoff",
+  "persona": "pessoa_padrao",
+  "depth": "explicador",
+  "slides": [
+    {
+      "role": "capa",
+      "surface": "imagem",
+      "layout": "capa-onda",
+      "wave": "suave",
+      "headline": "Por que BH aposta em áreas verdes?",
+      "highlight": [
+        "BH aposta",
+        "áreas verdes"
+      ],
+      "datum": {
+        "value": "R$ 500 milhões",
+        "label": "investimento do Fundo Clima",
+        "source": {
+          "title": "Recursos para clima crescem no Brasil, mas ainda são insuficientes e instáveis - Observatório do Clima",
+          "url": "https://oc.eco.br/recursos-para-clima-crescem-no-brasil-mas-ainda-sao-insuficientes-e-instaveis/"
+        }
+      },
+      "image": {
+        "path": "web/public/images/DSC_0621.jpg",
+        "alt": "Voluntários do mutirão SOS Manguezal trocam um saco de lixo ao lado de caiaques, com o manguezal ao fundo"
+      },
+      "silhouette": "crescente"
+    },
+    {
+      "role": "hook-2",
+      "surface": "shell",
+      "headline": "O desafio dos créditos reembolsáveis",
+      "highlight": [
+        "desafio",
+        "créditos reembolsáveis"
+      ],
+      "body": "99% dos créditos de 2027 são reembolsáveis, dificultando adaptação.",
+      "cliffhanger": "Como isso impacta BH?",
+      "datum": {
+        "value": "99%",
+        "label": "créditos reembolsáveis em 2027",
+        "source": {
+          "title": "Recursos para clima crescem no Brasil, mas ainda são insuficientes e instáveis - Observatório do Clima",
+          "url": "https://oc.eco.br/recursos-para-clima-crescem-no-brasil-mas-ainda-sao-instaveis/"
+        }
+      }
+    },
+    {
+      "role": "desenvolvimento",
+      "surface": "carbon",
+      "layout": "faixa",
+      "headline": "Créditos reembolsáveis: uma barreira",
+      "body": "Municípios vulneráveis têm dificuldade em acessar financiamentos reembolsáveis.",
+      "cliffhanger": "Belo Horizonte pode ser diferente?",
+      "image": {
+        "path": "web/public/images/DSC_0653.jpg",
+        "alt": "Folhagem de mangue em primeiro plano com a baía ao fundo, céu nublado"
+      }
+    },
+    {
+      "role": "desenvolvimento",
+      "surface": "imagem",
+      "layout": "figura",
+      "headline": "A meta de adaptação do Fundo Clima",
+      "figure": {
+        "type": "anel",
+        "valor": 20,
+        "valorLabel": "20%",
+        "rotulo": "da carteira em adaptação",
+        "source": {
+          "title": "Recursos para clima crescem no Brasil, mas ainda são insuficientes e instáveis - Observatório do Clima",
+          "url": "https://oc.eco.br/recursos-para-clima-crescem-no-brasil-mas-ainda-sao-instaveis/"
+        }
+      }
+    },
+    {
+      "role": "payoff",
+      "surface": "lime",
+      "layout": "faixa",
+      "headline": "O papel do carbono azul",
+      "body": "Projetos não reembolsáveis em manguezais podem financiar adaptações essenciais.",
+      "cliffhanger": "Descubra como participar.",
+      "image": {
+        "path": "web/public/images/DSC_0662.jpg",
+        "alt": "Raízes de manguezal em arco dramático sobre a água, com pessoas ao fundo na baía"
+      }
+    },
+    {
+      "role": "cta",
+      "surface": "imagem",
+      "layout": "fechamento",
+      "headline": "Junte-se à causa do carbono azul!",
+      "body": "Salve este post e compartilhe para apoiar a adaptação climática.",
+      "image": {
+        "path": "web/public/images/DSC_0660.jpg",
+        "alt": "Muda de mangue solitária refletida na água parada da baía"
+      }
+    }
+  ],
+  "caption": {
+    "text": "Belo Horizonte investirá R$ 500 milhões do Fundo Clima em projetos de adaptação. Mas 99% dos créditos são reembolsáveis, complicando a situação. Como o carbono azul pode ajudar? Veja mais detalhes no post.",
+    "hashtags": [
+      "#carbonoazul",
+      "#mercadodecarbono",
+      "#manguezal",
+      "#ESG",
+      "#créditodecarbono"
+    ]
+  },
+  "notes": "Gerado via /gerar em 30/09/2026, 17:13:33 · modelo gpt-4o."
+}

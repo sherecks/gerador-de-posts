@@ -1,0 +1,85 @@
+.navbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.position-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--k-z-nav);
+}
+
+.position-static {
+  position: relative;
+  width: 100%;
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--k-container-xl);
+  margin: 0 auto;
+  padding: 0 var(--k-space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-8);
+}
+
+.logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-6);
+  flex: 1;
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-sm);
+  font-weight: var(--k-font-weight-medium);
+  letter-spacing: var(--k-tracking-wide);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-3);
+  margin-left: auto;
+}
+
+/* Variants */
+.variant-transparent {
+  background: transparent;
+}
+
+/* Glass — opt-in only (variant="glass"). DESIGN.md No-Glass-By-Default Rule:
+ * low-blur (8px), high opacity background so the surface reads solid-ish even
+ * when the blur silently fails on unsupporting browsers. */
+.variant-glass {
+  background: var(--k-color-surface-glass);
+  backdrop-filter: blur(var(--k-blur-sm));
+  -webkit-backdrop-filter: blur(var(--k-blur-sm));
+  border-bottom: 1px solid var(--k-color-border-default);
+}
+
+.variant-solid {
+  background: var(--k-color-surface-shell);
+  border-bottom: 1px solid var(--k-color-border-default);
+}
+
+/* Mobile — hide the inline links section. Logo + actions stay.
+ * Pages that need a mobile menu must provide their own hamburger trigger
+ * via the `actions` slot (keeps Navbar stateless). */
+@media (max-width: 768px) {
+  .inner {
+    padding: 0 var(--k-space-4);
+    gap: var(--k-space-4);
+  }
+  .links {
+    display: none;
+  }
+}

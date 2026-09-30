@@ -1,0 +1,128 @@
+.root {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+  min-width: 0;
+}
+
+/* Dot + connecting line track */
+.dotTrack {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  justify-content: center;
+  margin-bottom: var(--k-space-3);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--k-radius-full);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 5px);
+  right: calc(-50% + 5px);
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+/* Status styles */
+.status-completed .dot {
+  background: currentColor;
+}
+
+.status-completed .line {
+  background: currentColor;
+}
+
+.status-active .dot {
+  background: transparent;
+  border: 2.5px solid currentColor;
+}
+
+.status-active .line {
+  background: var(--k-color-border-default);
+}
+
+.status-upcoming .dot {
+  background: transparent;
+  border: 2px dashed var(--k-color-text-tertiary);
+}
+
+.status-upcoming .line {
+  background: var(--k-color-border-default);
+  border: none;
+}
+
+/* Year */
+.year {
+  font-size: var(--k-font-size-sm);
+  font-weight: var(--k-font-weight-semibold);
+  color: var(--k-color-text-primary);
+  margin-bottom: 2px;
+  letter-spacing: var(--k-tracking-tight);
+}
+
+/* Label */
+.label {
+  font-size: var(--k-font-size-xs);
+  color: var(--k-color-text-secondary);
+  line-height: var(--k-line-height-normal);
+}
+
+/* Accent colors */
+.accent-mangue .status-completed,
+.accent-mangue .status-active {
+  color: var(--k-color-mangue);
+}
+
+.accent-cyan .status-completed,
+.accent-cyan .status-active {
+  color: var(--k-color-cyan);
+}
+
+/* Mobile — flip horizontal track to a vertical list */
+@media (max-width: 640px) {
+  .root {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--k-space-4);
+  }
+  .item {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: var(--k-space-3);
+  }
+  .dotTrack {
+    width: auto;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .line {
+    display: none;
+  }
+  .year {
+    margin-bottom: 0;
+    margin-right: var(--k-space-2);
+  }
+}

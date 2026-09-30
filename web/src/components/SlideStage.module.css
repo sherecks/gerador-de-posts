@@ -1,0 +1,641 @@
+/*
+ * One 1080×1350 (4:5) slide. Every length is in `cqw`, so the same
+ * component is faithful at filmstrip size and at stage size without a
+ * second stylesheet.
+ *
+ * Brand-agnostic by construction: `.slide` sets the --slide-font-* trio to
+ * the Karaguá v3.0 tokens as the default (every generation before the ADX
+ * brand existed assumes them), and `.brandAdx` (applied by SlideStage.tsx
+ * alongside the surface class, docs/decisions/004) repoints those three
+ * variables plus the surface colors and the highlight treatment. Nothing
+ * else in this file — the figure tokens, the layout geometry, the mark
+ * specs — needs to know a second brand exists.
+ */
+
+.slide {
+  container-type: inline-size;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  overflow: hidden;
+  display: block;
+  /* Flat at rest: no radius, no shadow (DESIGN.md / ADX design-system.html §layout, same rule by convergence). */
+  border-radius: 0;
+  background: var(--k-color-surface-shell);
+  color: var(--k-color-text-primary);
+  --slide-font-display: var(--k-font-family);
+  --slide-font-mono: var(--k-font-family-mono);
+  --slide-font-body: var(--k-font-family);
+}
+
+.shell {
+  background: var(--k-color-surface-shell);
+  color: var(--k-color-surface-carbon);
+}
+
+.carbon {
+  background: var(--k-color-surface-carbon);
+  color: var(--k-color-text-on-dark);
+}
+
+.lime {
+  background: var(--k-color-green-karagua);
+  color: var(--k-color-surface-carbon);
+}
+
+.imagem {
+  background: var(--k-color-surface-carbon);
+  color: var(--k-color-text-on-dark);
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Adaptive scrim per band (RENDER-RULES §3): the factory decides α, we replay it. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  /* The bands must cover the text, not just its first line: headline and body
+     sit in the top half, datum and footer in the bottom third. */
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(26, 35, 50, var(--scrim-top)) 0%,
+      rgba(26, 35, 50, calc(var(--scrim-top) * 0.85)) 42%,
+      rgba(26, 35, 50, 0) 72%
+    ),
+    linear-gradient(to top, rgba(26, 35, 50, var(--scrim-bottom)) 0%, rgba(26, 35, 50, 0) 46%);
+}
+
+.content {
+  position: relative;
+  height: 100%;
+  padding: 8cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 4cqw;
+  hyphens: none;
+  font-family: var(--slide-font-body);
+}
+
+.eyebrow {
+  font-family: var(--slide-font-mono);
+  font-size: 2.6cqw;
+  font-weight: 500;
+  letter-spacing: var(--k-tracking-widest);
+  text-transform: uppercase;
+  opacity: 0.86;
+}
+
+.limeEyebrow,
+.shellEyebrow {
+  color: var(--k-color-green-karagua-deep);
+}
+
+.carbonEyebrow,
+.imagemEyebrow {
+  color: var(--k-color-green-karagua);
+}
+
+/*
+ * ADX: the eyebrow is the accent color, full stop — `--fig-accent` is
+ * already brand+surface aware (set per .brandAdx.<surface> block below), so
+ * one rule replaces the four Karaguá-hardcoded ones above instead of
+ * leaking Karaguá's olive into an ADX slide (found live: an ADX "shell"
+ * eyebrow was rendering in Karaguá green before this rule existed).
+ * On .brandAdx.lime specifically this resolves to white, same as the body
+ * text there — --fig-accent's job on that surface is "pop against the
+ * blue field", which body text already does, so eyebrow and body coincide.
+ * The 0.86 opacity above is the only distinction left in that one case;
+ * accepted rather than inventing a fourth ADX color outside the documented
+ * three-tone palette (docs/decisions/004) for one edge combination.
+ */
+.brandAdx .shellEyebrow,
+.brandAdx .carbonEyebrow,
+.brandAdx .imagemEyebrow,
+.brandAdx .limeEyebrow {
+  color: var(--fig-accent);
+}
+
+.body {
+  font-size: calc(3.6cqw * var(--text-scale, 1));
+  line-height: var(--k-line-height-normal);
+  text-wrap: pretty;
+  max-width: 62ch;
+  opacity: 0.92;
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--slide-font-display);
+  font-size: calc(8.4cqw * var(--text-scale, 1));
+  font-weight: var(--k-font-weight-heavy);
+  line-height: var(--k-line-height-tight);
+  letter-spacing: var(--k-tracking-tighter);
+  text-wrap: balance;
+}
+
+/* Ragging silhouettes of RENDER-RULES §1, approximated by measure. */
+.quadrado {
+  max-width: 15ch;
+}
+
+.crescente {
+  max-width: 13ch;
+}
+
+.decrescente {
+  max-width: 17ch;
+}
+
+.onPhoto {
+  text-shadow: 0 0.2cqw 1.2cqw rgba(15, 24, 32, 0.45);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.datum {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2cqw;
+  padding-top: 3cqw;
+  border-top: 0.35cqw solid currentColor;
+}
+
+.datumValue {
+  font-family: var(--slide-font-mono);
+  font-size: 9cqw;
+  font-weight: 600;
+  letter-spacing: var(--k-tracking-tighter);
+  white-space: nowrap;
+}
+
+.datumLabel {
+  font-size: 3cqw;
+  line-height: var(--k-line-height-snug);
+  opacity: 0.9;
+}
+
+.datumSource {
+  font-family: var(--slide-font-mono);
+  font-size: 2.2cqw;
+  letter-spacing: var(--k-tracking-wide);
+  opacity: 0.7;
+}
+
+.footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 3cqw;
+  font-size: 2.8cqw;
+}
+
+/* Over a photo the footer is a solid bar along the slide's bottom edge,
+   reaching out through the content padding to the slide's edges. */
+.footerOnPhoto {
+  margin: 0 -8cqw -8cqw;
+  padding: 3.4cqw 8cqw 6cqw;
+  background: rgba(15, 20, 28, 0.86);
+  color: var(--k-color-text-on-dark);
+}
+
+/* Small text on a photo: a solid strip behind each line (it clones onto every wrapped line). */
+.photoStrip {
+  background: rgba(15, 20, 28, 0.82);
+  color: var(--k-color-text-on-dark);
+  padding: 0.14em 0.4em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.bodyOnPhoto {
+  /* Leading that leaves a sliver of photo between the strips of consecutive lines. */
+  line-height: 1.75;
+  opacity: 1;
+}
+
+/* faixa with the photo at the bottom: text first, the photo takes the rest of the height. */
+.fotoBaixoStack {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.fotoBaixoText {
+  display: flex;
+  flex-direction: column;
+  gap: 4cqw;
+  padding: 8cqw 8cqw 2cqw;
+  font-family: var(--slide-font-body);
+  hyphens: none;
+}
+
+.bottomPhoto {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 40cqw;
+}
+
+.bottomPhotoImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The brand's wave, flipped: the surface flows down over the photo's top edge. */
+.bottomPhotoWave {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 10cqw;
+  transform: scaleY(-1);
+}
+
+.bottomPhotoFooter {
+  position: absolute;
+  left: 8cqw;
+  right: 8cqw;
+  bottom: 8cqw;
+}
+
+.cliffhanger {
+  font-weight: var(--k-font-weight-semibold);
+  opacity: 0.88;
+}
+
+.swipe {
+  font-family: var(--slide-font-mono);
+  font-size: 2.4cqw;
+  letter-spacing: var(--k-tracking-wider);
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.66;
+}
+
+/* ═══════════════════════════════════════════════
+ * Figure tokens, per surface
+ *
+ * The figures never pick a color: the slide surface hands them these, so a
+ * diagram is on-brand by construction. This is an EMPHASIS scheme, not a
+ * categorical palette (the brand has one chord): one accent carries the data,
+ * `track` recedes, ink stays in text tokens. The 5-step `ramp` is the only
+ * genuinely sequential scale (camadas = depth) and each ramp was re-stepped
+ * until it passed the ordinal checks (monotone L, ΔL ≥ 0.06 between steps,
+ * light end ≥ 2:1 on its own surface, single hue) — not eyeballed.
+ * `ramp-flip` is the step from which the label inside a band turns light.
+ * ═══════════════════════════════════════════════ */
+
+.shell {
+  --fig-accent: #828e1a;
+  --fig-track: rgba(26, 35, 50, 0.14);
+  --fig-rule: rgba(26, 35, 50, 0.18);
+  --fig-ink: #1a2332;
+  --fig-ink-muted: rgba(26, 35, 50, 0.6);
+  --fig-surface: #f7f5f0;
+  --fig-on-accent: #f7f5f0;
+  --fig-ramp-1: #a6b254;
+  --fig-ramp-2: #8e9b39;
+  --fig-ramp-3: #767f22;
+  --fig-ramp-4: #5c6415;
+  --fig-ramp-5: #3f470c;
+  --fig-ramp-flip: 3;
+}
+
+.carbon,
+.imagem {
+  --fig-accent: #c7d926;
+  --fig-track: rgba(247, 245, 240, 0.16);
+  --fig-rule: rgba(247, 245, 240, 0.2);
+  --fig-ink: #f7f5f0;
+  --fig-ink-muted: rgba(247, 245, 240, 0.62);
+  --fig-surface: #1a2332;
+  --fig-on-accent: #1a2332;
+  --fig-ramp-1: #525e30;
+  --fig-ramp-2: #6f7d2c;
+  --fig-ramp-3: #8d9e2a;
+  --fig-ramp-4: #aabd27;
+  --fig-ramp-5: #c7d926;
+  --fig-ramp-flip: 4;
+}
+
+.lime {
+  --fig-accent: #1a2332;
+  --fig-track: rgba(26, 35, 50, 0.18);
+  --fig-rule: rgba(26, 35, 50, 0.22);
+  --fig-ink: #1a2332;
+  --fig-ink-muted: rgba(26, 35, 50, 0.62);
+  --fig-surface: #c7d926;
+  --fig-on-accent: #c7d926;
+  --fig-ramp-1: #7e8a1d;
+  --fig-ramp-2: #626c16;
+  --fig-ramp-3: #494f10;
+  --fig-ramp-4: #31350b;
+  --fig-ramp-5: #1a1c06;
+  --fig-ramp-flip: 1;
+}
+
+/* ═══════════════════════════════════════════════
+ * ADX brand — docs/decisions/004. Applied by SlideStage.tsx as a second
+ * class alongside the surface class (`.brandAdx.shell`, not a replacement
+ * for `.shell`), so specificity naturally wins over the Karaguá defaults
+ * above without an !important anywhere. One chord here too (blue #0057E7),
+ * same "flat at rest" rule, different type system (Bebas Neue / IBM Plex).
+ * Every hex below is validated (dataviz skill, six checks) against the
+ * surface it sits on — see docs/decisions/004 for the runs.
+ * ═══════════════════════════════════════════════ */
+
+.brandAdx {
+  --slide-font-display: var(--adx-font-display);
+  --slide-font-mono: var(--adx-font-mono);
+  --slide-font-body: var(--adx-font-body);
+}
+
+.brandAdx.shell {
+  background: #ffffff;
+  color: #0a0a0a;
+  --fig-accent: #0057e7;
+  --fig-track: rgba(10, 10, 10, 0.1);
+  --fig-rule: rgba(10, 10, 10, 0.16);
+  --fig-ink: #0a0a0a;
+  --fig-ink-muted: rgba(10, 10, 10, 0.55);
+  --fig-surface: #ffffff;
+  --fig-on-accent: #ffffff;
+  --fig-ramp-1: #8fadf4;
+  --fig-ramp-2: #6690ee;
+  --fig-ramp-3: #3e70e5;
+  --fig-ramp-4: #1f52d0;
+  --fig-ramp-5: #0f3aa8;
+  --fig-ramp-flip: 3;
+}
+
+.brandAdx.carbon,
+.brandAdx.imagem {
+  background: #0a0a0a;
+  color: #ffffff;
+  --fig-accent: #5a85f0;
+  --fig-track: rgba(255, 255, 255, 0.14);
+  --fig-rule: rgba(255, 255, 255, 0.18);
+  --fig-ink: #ffffff;
+  --fig-ink-muted: rgba(255, 255, 255, 0.6);
+  --fig-surface: #0a0a0a;
+  --fig-on-accent: #0a0a0a;
+  --fig-ramp-1: #1b4fc4;
+  --fig-ramp-2: #3868de;
+  --fig-ramp-3: #5484ec;
+  --fig-ramp-4: #77a2f4;
+  --fig-ramp-5: #a0c0fa;
+  --fig-ramp-flip: 3;
+}
+
+.brandAdx.lime {
+  background: #0057e7;
+  color: #ffffff;
+  --fig-accent: #ffffff;
+  --fig-track: rgba(255, 255, 255, 0.18);
+  --fig-rule: rgba(255, 255, 255, 0.22);
+  --fig-ink: #ffffff;
+  --fig-ink-muted: rgba(255, 255, 255, 0.65);
+  --fig-surface: #0057e7;
+  --fig-on-accent: #0057e7;
+  --fig-ramp-1: #eaf0fe;
+  --fig-ramp-2: #c7d8fc;
+  --fig-ramp-3: #a3befa;
+  --fig-ramp-4: #7fa3f6;
+  --fig-ramp-5: #5a85f0;
+  --fig-ramp-flip: 3;
+}
+
+/* ADX on shell/carbon: mark emphasis by coloring the word, never a filled box
+   (post4.png: "CPQL" in accent blue on white) — the one deliberate divergence
+   from Karaguá's box treatment, because it is what the brand already does,
+   not a Karaguá habit imported onto it. `--fig-accent` differs from the base
+   text color on both these surfaces (blue vs black, light blue vs white), so
+   recoloring the word is enough to read as emphasis. */
+.brandAdx.carbon .highlightBox,
+.brandAdx.imagem .highlightBox,
+.brandAdx.shell .highlightBox {
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: var(--fig-accent);
+  box-decoration-break: unset;
+  -webkit-box-decoration-break: unset;
+}
+
+/*
+ * ADX on its own accent surface (blue, "lime" in the shared surface enum):
+ * body text there is already white, and so is --fig-accent on that surface
+ * (its job is "pop against the blue field", which the body text already
+ * does) — recoloring into the same white as everything else would be
+ * invisible (found live: "VENDA PAGA." rendered with zero distinction from
+ * the rest of the headline). Falls back to a filled box instead, inverted
+ * off the brand's own blue, for the same structural reason Karaguá's own
+ * lime surface uses a box rather than a color swap.
+ */
+.brandAdx.lime .highlightBox {
+  --hl-bg: #ffffff;
+  color: #0057e7;
+}
+
+/* ═══════════════════════════════════════════════
+ * Highlight box (headline word/phrase emphasis)
+ * The color-box-behind-a-word treatment, using the same surface
+ * tokens as everything else, never a color outside the brand chord.
+ * ═══════════════════════════════════════════════ */
+
+/* The box paints a band a little shorter than the line box (0.94em, not the
+   font's full ~1.2em), so on a wrapped phrase each line's box stands apart
+   from the next instead of fusing into one slab; the margin keeps it off the
+   neighbouring word. */
+.highlightBox {
+  --hl-bg: var(--k-color-green-karagua);
+  background: linear-gradient(var(--hl-bg), var(--hl-bg)) 0 60% / 100% 0.94em no-repeat;
+  color: var(--k-color-surface-carbon);
+  padding: 0 0.14em;
+  margin: 0 0.06em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* A headline carrying a box needs a little more leading than tight, or the bands of consecutive lines touch. */
+.hasHighlight {
+  line-height: 1.14;
+}
+
+.carbon .highlightBox,
+.imagem .highlightBox {
+  --hl-bg: var(--k-color-green-karagua);
+  color: var(--k-color-surface-carbon);
+}
+
+.shell .highlightBox,
+.lime .highlightBox {
+  --hl-bg: var(--k-color-surface-carbon);
+  color: var(--k-color-green-karagua);
+}
+
+/* ═══════════════════════════════════════════════
+ * capa-onda — photo up top, color band below with an organic wave edge
+ * ═══════════════════════════════════════════════ */
+
+.waveTopPhoto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64cqw;
+  width: 100%;
+  object-fit: cover;
+}
+
+.waveBand {
+  position: absolute;
+  top: 40cqw;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.waveSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.waveContent {
+  position: relative;
+  height: 100%;
+  padding: 20cqw 8cqw 8cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 4cqw;
+  hyphens: none;
+  font-family: var(--slide-font-body);
+}
+
+/* ═══════════════════════════════════════════════
+ * numero — the datum is the hero
+ * ═══════════════════════════════════════════════ */
+
+.numeroHero {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5cqw;
+}
+
+.numeroValue {
+  font-family: var(--slide-font-mono);
+  font-size: 18cqw;
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: var(--k-tracking-tighter);
+}
+
+.numeroLabel {
+  font-size: 4.4cqw;
+  line-height: var(--k-line-height-snug);
+  max-width: 20ch;
+  opacity: 0.9;
+}
+
+/* ═══════════════════════════════════════════════
+ * figura — a diagram from the fixed catalog
+ * ═══════════════════════════════════════════════ */
+
+.figuraHeadline {
+  font-size: 6cqw;
+  max-width: 22ch;
+}
+
+.figuraFrame {
+  /* Basis 0: the frame's height is whatever the slide leaves, never its content's, so FigureFit has a fixed box to fill. */
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════
+ * fechamento — the mark, a clear CTA
+ * ═══════════════════════════════════════════════ */
+
+.fechamentoContent {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+/* On the photo variant the band is shorter: mark and CTA sit centered on it, the footer stays at the bottom. */
+/* The closing photo is shorter than the cover's (52cqw, not 64): the band has to hold the mark, the CTA and the footer. */
+.fechamentoFotoPhoto {
+  height: 52cqw;
+}
+
+.fechamentoFotoBand {
+  top: 30cqw;
+}
+
+.fechamentoFotoContent {
+  align-items: center;
+  text-align: center;
+  padding-top: 23cqw;
+  gap: 3cqw;
+}
+
+/* The band is ~85cqw tall, not the whole slide: a smaller mark and headline keep the footer on it. */
+.fechamentoFotoContent .fechamentoLogo {
+  width: 11cqw;
+}
+
+.fechamentoFotoContent .fechamentoHeadline {
+  font-size: 7cqw;
+}
+
+.fechamentoFotoContent > :last-child {
+  align-self: stretch;
+  text-align: left;
+}
+
+.fechamentoLogo {
+  width: 16cqw;
+  height: auto;
+  opacity: 0.92;
+}
+
+/* ADX's own mark: wordmark + short accent rule underneath (post1-4.png), never an icon. */
+.adxWordmark {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2cqw;
+  font-family: var(--adx-font-display);
+  font-size: 7cqw;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.adxWordmarkRule {
+  display: block;
+  width: 7cqw;
+  height: 0.7cqw;
+  background: var(--fig-accent);
+}
+
+.fechamentoHeadline {
+  max-width: 16ch;
+}

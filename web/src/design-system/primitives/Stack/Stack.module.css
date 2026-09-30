@@ -1,0 +1,29 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Gap */
+.gap-1 { gap: var(--k-space-1); }
+.gap-2 { gap: var(--k-space-2); }
+.gap-3 { gap: var(--k-space-3); }
+.gap-4 { gap: var(--k-space-4); }
+.gap-6 { gap: var(--k-space-6); }
+.gap-8 { gap: var(--k-space-8); }
+.gap-12 { gap: var(--k-space-12); }
+.gap-16 { gap: var(--k-space-16); }
+
+/* Align (cross-axis) */
+.align-start { align-items: flex-start; }
+.align-center { align-items: center; }
+.align-end { align-items: flex-end; }
+.align-stretch { align-items: stretch; }
+
+/* Justify (main-axis) */
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }

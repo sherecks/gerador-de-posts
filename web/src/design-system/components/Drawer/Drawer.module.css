@@ -1,0 +1,120 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: var(--k-z-modal);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.wrapper.open {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--k-color-surface-glass-dark);
+  opacity: 0;
+  transition: opacity var(--k-duration-normal) var(--k-ease-standard);
+}
+
+.open .overlay {
+  opacity: 1;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--k-color-surface-elevated);
+  box-shadow: var(--k-shadow-2xl);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--k-duration-normal) var(--k-ease-spring);
+}
+
+.pos-left {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.pos-right {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.open .pos-left {
+  transform: translateX(0);
+}
+
+.open .pos-right {
+  transform: translateX(0);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--k-space-5) var(--k-space-6);
+  border-bottom: 1px solid var(--k-color-border-subtle);
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-lg);
+  font-weight: var(--k-font-weight-bold);
+  color: var(--k-color-text-primary);
+  letter-spacing: var(--k-tracking-tight);
+  margin: 0;
+}
+
+.close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--k-color-text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: var(--k-radius-full);
+  transition:
+    background-color var(--k-duration-fast) var(--k-ease-standard),
+    color var(--k-duration-fast) var(--k-ease-standard);
+}
+
+.close:hover {
+  background-color: var(--k-color-surface-fog);
+  color: var(--k-color-text-primary);
+}
+
+.close:focus-visible {
+  outline: none;
+  box-shadow: var(--k-focus-ring);
+}
+
+.body {
+  padding: var(--k-space-6);
+  overflow-y: auto;
+  flex: 1;
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-base);
+  color: var(--k-color-text-primary);
+  line-height: var(--k-line-height-relaxed);
+}
+
+/* Mobile — drawer takes full viewport width */
+@media (max-width: 640px) {
+  .panel {
+    width: 100vw !important;
+    max-width: 100vw;
+  }
+  .header, .body {
+    padding-left: var(--k-space-4);
+    padding-right: var(--k-space-4);
+  }
+}

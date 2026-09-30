@@ -1,0 +1,69 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-2);
+}
+
+/* Alignment */
+.align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.align-center {
+  align-items: center;
+  text-align: center;
+}
+
+/* Label */
+.label {
+  font-size: 11px;
+  font-weight: var(--k-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--k-tracking-wider);
+  color: var(--k-color-text-secondary);
+}
+
+/* Value — big bold number with tight tracking */
+.value {
+  font-weight: var(--k-font-weight-bold);
+  line-height: var(--k-line-height-tight);
+  letter-spacing: var(--k-tracking-tighter);
+}
+
+/* Description */
+.description {
+  margin: 0;
+  color: var(--k-color-text-secondary);
+  line-height: var(--k-line-height-relaxed);
+}
+
+/* Sizes */
+.size-lg .value {
+  font-size: var(--k-font-size-5xl);
+  letter-spacing: var(--k-tracking-tightest);
+}
+
+.size-lg .description {
+  font-size: var(--k-font-size-base);
+}
+
+.size-md .value {
+  font-size: var(--k-font-size-4xl);
+  letter-spacing: var(--k-tracking-tighter);
+}
+
+.size-md .description {
+  font-size: var(--k-font-size-sm);
+}
+
+.size-sm .value {
+  font-size: var(--k-font-size-3xl);
+}
+
+.size-sm .description {
+  font-size: var(--k-font-size-sm);
+}
+
+/* Accent colors */
+.accent-mangue .value { color: var(--k-color-mangue); }

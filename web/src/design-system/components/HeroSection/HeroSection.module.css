@@ -1,0 +1,120 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--k-color-surface-shell);
+  padding: var(--k-space-24) var(--k-space-6);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--k-container-xl);
+  margin: 0 auto;
+}
+
+/* Alignment */
+.align-left .container {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.align-center .container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Eyebrow */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-sm);
+  font-weight: var(--k-font-weight-semibold);
+  letter-spacing: var(--k-tracking-widest);
+  text-transform: uppercase;
+  margin-bottom: var(--k-space-4);
+  animation: heroFadeUp 800ms var(--k-ease-organic) both;
+  animation-delay: 0ms;
+}
+
+.accent-mangue .eyebrow {
+  color: var(--k-color-mangue);
+}
+
+/* Title */
+.title {
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-display);
+  font-weight: var(--k-font-weight-black);
+  letter-spacing: var(--k-tracking-tightest);
+  line-height: var(--k-line-height-tight);
+  margin: 0 0 var(--k-space-6);
+  animation: heroFadeUp 800ms var(--k-ease-organic) both;
+  animation-delay: 100ms;
+}
+
+.accent-mangue .title {
+  color: var(--k-color-text-primary);
+}
+
+/* Subtitle */
+.subtitle {
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-xl);
+  font-weight: var(--k-font-weight-regular);
+  line-height: var(--k-line-height-relaxed);
+  color: var(--k-color-text-secondary);
+  max-width: 640px;
+  margin: 0;
+  animation: heroFadeUp 800ms var(--k-ease-organic) both;
+  animation-delay: 200ms;
+}
+
+.align-center .subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: var(--k-space-4);
+  margin-top: var(--k-space-10);
+  animation: heroFadeUp 800ms var(--k-ease-organic) both;
+  animation-delay: 300ms;
+}
+
+.align-center .actions {
+  justify-content: center;
+}
+
+/* Extra content */
+.extra {
+  margin-top: var(--k-space-12);
+  animation: heroFadeUp 800ms var(--k-ease-organic) both;
+  animation-delay: 400ms;
+}
+
+/* Entrance animation */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive: reduce hero title on smaller viewports */
+@media (max-width: 768px) {
+  .title {
+    font-size: var(--k-font-size-5xl);
+  }
+
+  .subtitle {
+    font-size: var(--k-font-size-lg);
+  }
+}

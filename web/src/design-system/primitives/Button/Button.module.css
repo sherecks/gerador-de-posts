@@ -1,0 +1,112 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--k-space-2);
+  font-family: var(--k-font-family);
+  font-weight: var(--k-font-weight-semibold);
+  letter-spacing: var(--k-tracking-normal);
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color var(--k-duration-fast) var(--k-ease-out-quart),
+    box-shadow var(--k-duration-fast) var(--k-ease-out-quart),
+    color var(--k-duration-fast) var(--k-ease-out-quart),
+    opacity var(--k-duration-fast) var(--k-ease-out-quart);
+}
+
+.button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Sizes — sharp 4px corners (DESIGN.md institutional, NOT pill) */
+.size-sm {
+  font-size: var(--k-font-size-sm);
+  padding: 8px 18px;
+  min-height: 36px;
+  border-radius: var(--k-radius-sm);
+}
+
+.size-md {
+  font-size: var(--k-font-size-base);
+  padding: 12px 24px;
+  min-height: 44px;
+  border-radius: var(--k-radius-sm);
+}
+
+.size-lg {
+  font-size: var(--k-font-size-md);
+  padding: 16px 32px;
+  min-height: 52px;
+  border-radius: var(--k-radius-sm);
+}
+
+/* Full width */
+.fullWidth {
+  width: 100%;
+}
+
+/* Primary variant — workhorse green on light surface */
+.variant-primary.accent-mangue {
+  background-color: var(--k-color-green-karagua-deep);
+  color: var(--k-color-text-on-dark);
+}
+
+.variant-primary.accent-mangue:hover:not(:disabled) {
+  background-color: var(--k-color-mangue-dark);
+  box-shadow: var(--k-shadow-md);
+}
+
+/* Secondary variant — subtle brand tint on shell */
+.variant-secondary.accent-mangue {
+  background-color: var(--k-color-green-karagua-subtle);
+  color: var(--k-color-green-karagua-deep);
+}
+
+.variant-secondary:hover:not(:disabled) {
+  background-color: var(--k-color-green-karagua-100);
+  box-shadow: var(--k-shadow-sm);
+}
+
+/* Outline variant — 1px brand border on transparent */
+.variant-outline {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--k-color-border-default);
+}
+
+.variant-outline.accent-mangue {
+  color: var(--k-color-green-karagua-deep);
+  box-shadow: inset 0 0 0 1px var(--k-color-green-karagua-deep);
+}
+
+.variant-outline:hover:not(:disabled) {
+  background-color: var(--k-color-green-karagua-100);
+}
+
+/* Ghost variant — text only */
+.variant-ghost {
+  background-color: transparent;
+}
+
+.variant-ghost.accent-mangue {
+  color: var(--k-color-green-karagua-deep);
+}
+
+.variant-ghost:hover:not(:disabled) {
+  background-color: var(--k-color-green-karagua-100);
+}
+
+/* Focus visible — standard ring (DESIGN.md State-focus token) */
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--k-focus-ring);
+}
+
+/* Mobile: bump small button to 44px touch target (Apple HIG) */
+@media (max-width: 640px) {
+  .size-sm {
+    min-height: 44px;
+    padding: 10px 20px;
+  }
+}

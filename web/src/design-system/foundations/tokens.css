@@ -1,0 +1,298 @@
+/*
+ * Karaguá Design System — Design Tokens
+ * Single source of truth for all visual properties.
+ * Prefix: --k- to prevent collision with third-party CSS.
+ *
+ * Editorial-institutional aesthetic (PRODUCT.md register=brand):
+ *   one chartreuse chord (Green Karaguá), warm cream surfaces,
+ *   sharp corners, flat-at-rest elevation, exponential easing.
+ *   Lineage: Hakai Magazine, Aeon, Patagonia, IPCC AR6, Carbon Brief.
+ *
+ * North Star: "O Estuário" — see DESIGN.md.
+ */
+
+:root {
+  /* ═══════════════════════════════════════════════
+   * COLOR — Brand (Green Karaguá, one chord)
+   * The brand has ONE color in three shades.
+   * Bright (#c7d926) lives on dark surfaces or display-size only.
+   * Deep olive (#828e1a) is the workhorse on light surfaces.
+   * ═══════════════════════════════════════════════ */
+  --k-color-green-karagua:        #c7d926;
+  --k-color-green-karagua-dark:   #adbc25;
+  --k-color-green-karagua-deep:   #828e1a;
+  --k-color-green-karagua-100:    rgba(130, 142, 26, 0.06);
+  --k-color-green-karagua-200:    rgba(130, 142, 26, 0.10);
+  --k-color-green-karagua-300:    rgba(130, 142, 26, 0.16);
+  --k-color-green-karagua-subtle: rgba(130, 142, 26, 0.08);
+
+  /* ═══════════════════════════════════════════════
+   * COLOR — Legacy aliases mapped onto Green Karaguá
+   * Primitives still consume these names; the values
+   * are now shades of the one brand chord. To be renamed
+   * in a later pass.
+   * ═══════════════════════════════════════════════ */
+  --k-color-mangue:            var(--k-color-green-karagua-deep);
+  --k-color-mangue-dark:       #6a7515;
+  --k-color-mangue-light:      var(--k-color-green-karagua);
+  --k-color-mangue-lighter:    #d6e54a;
+  --k-color-mangue-subtle:     var(--k-color-green-karagua-subtle);
+  --k-color-mangue-100:        var(--k-color-green-karagua-100);
+  --k-color-mangue-200:        var(--k-color-green-karagua-200);
+  --k-color-mangue-300:        var(--k-color-green-karagua-300);
+  --k-color-mangue-700:        #6a7515;
+  --k-color-mangue-800:        #525a10;
+  --k-color-mangue-900:        #3a400b;
+
+  /* Legacy cyan / gold accents → mapped to brand shades.
+   * accent="cyan" now reads as bright Green Karaguá (dark-surface usage).
+   * accent="gold" now reads as dark Green Karaguá (hover/press shade). */
+  --k-color-cyan:              var(--k-color-green-karagua-deep);
+  --k-color-cyan-dark:         #6a7515;
+  --k-color-cyan-light:        var(--k-color-green-karagua-dark);
+  --k-color-cyan-dim:          rgba(130, 142, 26, 0.15);
+  --k-color-cyan-subtle:       var(--k-color-green-karagua-subtle);
+  --k-color-gold:              var(--k-color-green-karagua);
+  --k-color-gold-dark:         var(--k-color-green-karagua-dark);
+  --k-color-gold-subtle:       var(--k-color-green-karagua-100);
+  --k-color-leaf:              #27AE60;
+  --k-color-leaf-subtle:       rgba(39, 174, 96, 0.10);
+
+  /* ═══════════════════════════════════════════════
+   * COLOR — Semantic (error / success)
+   * Distinct from brand. Used only as state signals.
+   * ═══════════════════════════════════════════════ */
+  --k-color-coral:             #E85D4A;
+  --k-color-coral-subtle:      rgba(232, 93, 74, 0.10);
+  --k-color-positive:          #27AE60;
+
+  /* ═══════════════════════════════════════════════
+   * COLOR — Surfaces (warm cream, no pure white)
+   * DESIGN.md No-Pure-White Rule: #FFFFFF is prohibited.
+   * The brand sits on Shell (#F7F5F0).
+   * ═══════════════════════════════════════════════ */
+  --k-color-surface-white:        #F7F5F0;
+  --k-color-surface-shell:        #F7F5F0;
+  --k-color-surface-shell-hover:  #F2EFE9;
+  --k-color-surface-fog:          #EBE8E2;
+  --k-color-surface-elevated:     #FBF9F4;
+  --k-color-surface-deep:         #1A2332;
+  --k-color-surface-carbon:       #1A2332;
+  --k-color-surface-carbon-light: #2D364A;
+  --k-color-surface-carbon-deep:  #0F1820;
+
+  /* Glass surfaces — exist as tokens but reserved for explicit
+   * opt-in only; not used in primitive defaults. */
+  --k-color-surface-glass:      rgba(247, 245, 240, 0.92);
+  --k-color-surface-glass-dark: rgba(26, 35, 50, 0.85);
+
+  /* ═══════════════════════════════════════════════
+   * COLOR — Text
+   * Warm ink, never pure black; honors DESIGN.md No-Pure-White.
+   * ═══════════════════════════════════════════════ */
+  --k-color-text-primary:       #2C3E50;
+  --k-color-text-secondary:     #6B7B8D;
+  --k-color-text-tertiary:      #97A0B0;
+  --k-color-text-on-dark:       #F7F5F0;
+  --k-color-text-on-dark-muted: rgba(247, 245, 240, 0.60);
+  --k-color-text-on-dark-faint: rgba(247, 245, 240, 0.40);
+  --k-color-text-on-dark-ghost: rgba(247, 245, 240, 0.10);
+
+  /* ═══════════════════════════════════════════════
+   * COLOR — Border
+   * Focus ring uses brand workhorse (Green Karaguá Deep) so
+   * focus state contrast on shell passes WCAG 2.2 ≥3:1.
+   * ═══════════════════════════════════════════════ */
+  --k-color-border-default:    rgba(44, 62, 80, 0.10);
+  --k-color-border-subtle:     rgba(44, 62, 80, 0.06);
+  --k-color-border-on-dark:    rgba(247, 245, 240, 0.10);
+  --k-color-border-input:      rgba(44, 62, 80, 0.20);
+  --k-color-border-focus:      var(--k-color-green-karagua-deep);
+
+  /* ═══════════════════════════════════════════════
+   * TYPOGRAPHY — Family
+   * Aileron is the singular voice; JetBrains Mono used only
+   * for verifiable data (figures, coordinates, citations).
+   * ═══════════════════════════════════════════════ */
+  --k-font-family:             'Aileron', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --k-font-family-mono:        'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* ═══════════════════════════════════════════════
+   * TYPOGRAPHY — Weight (true scale; was conflated previously)
+   * ═══════════════════════════════════════════════ */
+  --k-font-weight-thin:        100;
+  --k-font-weight-light:       300;
+  --k-font-weight-regular:     400;
+  --k-font-weight-medium:      500;
+  --k-font-weight-semibold:    600;
+  --k-font-weight-bold:        700;
+  --k-font-weight-heavy:       800;
+  --k-font-weight-black:       900;
+
+  /* ═══════════════════════════════════════════════
+   * TYPOGRAPHY — Size
+   * ═══════════════════════════════════════════════ */
+  --k-font-size-xs:            13px;
+  --k-font-size-sm:            15px;
+  --k-font-size-base:          17px;
+  --k-font-size-md:            19px;
+  --k-font-size-lg:            22px;
+  --k-font-size-xl:            26px;
+  --k-font-size-2xl:           clamp(26px, 2.5vw + 1rem, 32px);
+  --k-font-size-3xl:           clamp(30px, 3vw + 1rem, 40px);
+  --k-font-size-4xl:           clamp(34px, 3.5vw + 1rem, 48px);
+  --k-font-size-5xl:           clamp(38px, 4vw + 1rem, 60px);
+  --k-font-size-6xl:           clamp(44px, 5vw + 1rem, 80px);
+  --k-font-size-hero:          clamp(48px, 6vw + 1rem, 96px);
+  --k-font-size-display:       clamp(56px, 7vw + 1rem, 120px);
+
+  /* ═══════════════════════════════════════════════
+   * TYPOGRAPHY — Line Height
+   * ═══════════════════════════════════════════════ */
+  --k-line-height-tight:       1.05;
+  --k-line-height-snug:        1.15;
+  --k-line-height-normal:      1.45;
+  --k-line-height-relaxed:     1.55;
+
+  /* ═══════════════════════════════════════════════
+   * TYPOGRAPHY — Letter Spacing
+   * ═══════════════════════════════════════════════ */
+  --k-tracking-tightest:       -0.03em;
+  --k-tracking-tighter:        -0.02em;
+  --k-tracking-tight:          -0.01em;
+  --k-tracking-normal:         0;
+  --k-tracking-wide:           0.04em;
+  --k-tracking-wider:          0.08em;
+  --k-tracking-widest:         0.12em;
+
+  /* ═══════════════════════════════════════════════
+   * SPACING — 4px base
+   * ═══════════════════════════════════════════════ */
+  --k-space-0:                 0;
+  --k-space-1:                 4px;
+  --k-space-2:                 8px;
+  --k-space-3:                 12px;
+  --k-space-4:                 16px;
+  --k-space-5:                 20px;
+  --k-space-6:                 24px;
+  --k-space-8:                 32px;
+  --k-space-10:                40px;
+  --k-space-12:                48px;
+  --k-space-16:                64px;
+  --k-space-20:                80px;
+  --k-space-24:                96px;
+  --k-space-32:                128px;
+  --k-space-40:                160px;
+
+  /* ═══════════════════════════════════════════════
+   * BORDER RADIUS — Sharp by default (institutional, not Apple-pastel)
+   * DESIGN.md: buttons rounded-sm (4px); cards rounded-md (8px).
+   * --k-radius-pill is RESERVED for genuine pill shapes (Switch track only).
+   * ═══════════════════════════════════════════════ */
+  --k-radius-none:             0;
+  --k-radius-xs:               2px;
+  --k-radius-sm:               4px;
+  --k-radius-md:               8px;
+  --k-radius-lg:               12px;
+  --k-radius-xl:               16px;
+  --k-radius-2xl:              20px;
+  --k-radius-pill:             9999px;
+  --k-radius-full:             50%;
+
+  /* ═══════════════════════════════════════════════
+   * SHADOWS — Flat at rest; shadows only as state response
+   * DESIGN.md Flat-At-Rest Rule. Shadow color is ink-tinted,
+   * not brand-tinted (warm but neutral on shell).
+   * ═══════════════════════════════════════════════ */
+  --k-shadow-xs:               0 1px 2px rgba(44, 62, 80, 0.04);
+  --k-shadow-sm:               0 1px 3px rgba(44, 62, 80, 0.06);
+  --k-shadow-md:               0 2px 6px rgba(44, 62, 80, 0.08);
+  --k-shadow-lg:               0 6px 16px rgba(44, 62, 80, 0.10);
+  --k-shadow-xl:               0 12px 32px rgba(44, 62, 80, 0.12);
+  --k-shadow-2xl:              0 20px 48px rgba(44, 62, 80, 0.14);
+
+  /* Focus ring — Green Karaguá at 40% alpha, ≥3:1 non-text contrast on shell */
+  --k-focus-ring:              0 0 0 3px rgba(130, 142, 26, 0.40);
+  --k-focus-ring-on-dark:      0 0 0 3px rgba(199, 217, 38, 0.50);
+
+  /* ═══════════════════════════════════════════════
+   * GLASS — Reserved tokens (opt-in only; no primitive default)
+   * ═══════════════════════════════════════════════ */
+  --k-blur-sm:                 8px;
+  --k-blur-md:                 16px;
+  --k-blur-lg:                 24px;
+
+  /* ═══════════════════════════════════════════════
+   * MOTION — Exponential easing only (no bounce, no spring)
+   * DESIGN.md: ease-out-quart and ease-out-expo are the only
+   * sanctioned curves for state transitions.
+   * ═══════════════════════════════════════════════ */
+  --k-duration-fast:           150ms;
+  --k-duration-normal:         250ms;
+  --k-duration-slow:           400ms;
+
+  --k-ease-standard:           cubic-bezier(0.22, 1, 0.36, 1);
+  --k-ease-out-quart:          cubic-bezier(0.22, 1, 0.36, 1);
+  --k-ease-out-expo:           cubic-bezier(0.16, 1, 0.3, 1);
+  --k-ease-out-quint:          cubic-bezier(0.23, 1, 0.32, 1);
+  --k-ease-in:                 cubic-bezier(0.5, 0, 0.75, 0);
+
+  /* Legacy aliases retained for backward-compat with primitives;
+   * all point to the exponential ease-out family. */
+  --k-ease-out:                var(--k-ease-out-quart);
+  --k-ease-spring:             var(--k-ease-out-quart);
+  --k-ease-bounce:             var(--k-ease-out-quart);
+  --k-ease-organic:            var(--k-ease-out-quart);
+
+  /* ═══════════════════════════════════════════════
+   * Z-INDEX LAYERS
+   * ═══════════════════════════════════════════════ */
+  --k-z-base:                  0;
+  --k-z-raised:                1;
+  --k-z-card:                  2;
+  --k-z-sticky:                10;
+  --k-z-overlay:               20;
+  --k-z-nav:                   100;
+  --k-z-modal:                 200;
+  --k-z-toast:                 300;
+
+  /* ═══════════════════════════════════════════════
+   * LAYOUT
+   * ═══════════════════════════════════════════════ */
+  --k-container-sm:            640px;
+  --k-container-md:            768px;
+  --k-container-lg:            1024px;
+  --k-container-xl:            1280px;
+
+  /* ═══════════════════════════════════════════════
+   * BREAKPOINTS (for use in @media queries via tokens)
+   * ═══════════════════════════════════════════════ */
+  --k-bp-sm:                   640px;
+  --k-bp-md:                   768px;
+  --k-bp-lg:                   1024px;
+  --k-bp-xl:                   1280px;
+
+  /* ═══════════════════════════════════════════════
+   * ICON SIZING
+   * ═══════════════════════════════════════════════ */
+  --k-icon-sm:                 16px;
+  --k-icon-md:                 24px;
+  --k-icon-lg:                 32px;
+  --k-icon-xl:                 48px;
+}
+
+/* ═══════════════════════════════════════════════
+ * REDUCED MOTION (PRODUCT.md a11y floor: WCAG 2.3.3)
+ * Honor prefers-reduced-motion: reduce by collapsing
+ * every transition and animation to near-zero.
+ * ═══════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

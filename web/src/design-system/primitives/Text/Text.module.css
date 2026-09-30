@@ -1,0 +1,41 @@
+.text {
+  font-family: var(--k-font-family);
+  line-height: var(--k-line-height-relaxed);
+  margin: 0;
+}
+
+/* Sizes */
+.size-xs { font-size: var(--k-font-size-xs); }
+.size-sm { font-size: var(--k-font-size-sm); }
+.size-base { font-size: var(--k-font-size-base); }
+.size-md { font-size: var(--k-font-size-md); }
+.size-lg { font-size: var(--k-font-size-lg); }
+
+/* Weights */
+.weight-regular { font-weight: var(--k-font-weight-regular); }
+.weight-medium { font-weight: var(--k-font-weight-medium); }
+.weight-semibold { font-weight: var(--k-font-weight-semibold); }
+.weight-bold { font-weight: var(--k-font-weight-bold); }
+
+/* Colors — Apple grays */
+.color-primary { color: var(--k-color-text-primary); }
+.color-secondary { color: var(--k-color-text-secondary); }
+.color-on-dark { color: var(--k-color-text-on-dark); }
+.color-muted { color: var(--k-color-text-on-dark-muted); }
+.color-mangue { color: var(--k-color-mangue); }
+.color-coral { color: var(--k-color-coral); }
+.color-inherit { color: inherit; }
+
+/* Alignment */
+.align-left { text-align: left; }
+.align-center { text-align: center; }
+.align-right { text-align: right; }
+
+/* Tracking */
+.tracking-normal { letter-spacing: var(--k-tracking-normal); }
+.tracking-wide { letter-spacing: var(--k-tracking-wide); }
+.tracking-wider { letter-spacing: var(--k-tracking-wider); }
+.tracking-widest { letter-spacing: var(--k-tracking-widest); }
+
+/* Uppercase */
+.uppercase { text-transform: uppercase; }

@@ -1,0 +1,40 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--k-font-family);
+  font-weight: var(--k-font-weight-medium);
+  letter-spacing: var(--k-tracking-wide);
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--k-radius-pill);
+  white-space: nowrap;
+}
+
+/* Sizes */
+.size-sm {
+  font-size: 11px;
+  padding: 3px 10px;
+  line-height: var(--k-line-height-relaxed);
+}
+
+.size-md {
+  font-size: var(--k-font-size-xs);
+  padding: 5px 14px;
+  line-height: var(--k-line-height-normal);
+}
+
+/* Filled variant */
+.variant-filled.color-mangue { background-color: var(--k-color-mangue); color: var(--k-color-text-on-dark); }
+.variant-filled.color-coral { background-color: var(--k-color-coral); color: var(--k-color-text-on-dark); }
+.variant-filled.color-neutral { background-color: var(--k-color-surface-shell); color: var(--k-color-text-secondary); }
+
+/* Outline variant — inset box-shadow for crisp 1px border */
+.variant-outline { background-color: transparent; }
+.variant-outline.color-mangue { box-shadow: inset 0 0 0 1px var(--k-color-mangue); color: var(--k-color-mangue); }
+.variant-outline.color-coral { box-shadow: inset 0 0 0 1px var(--k-color-coral); color: var(--k-color-coral); }
+.variant-outline.color-neutral { box-shadow: inset 0 0 0 1px var(--k-color-border-default); color: var(--k-color-text-secondary); }
+
+/* Subtle variant */
+.variant-subtle.color-mangue { background-color: var(--k-color-mangue-subtle); color: var(--k-color-mangue); }
+.variant-subtle.color-coral { background-color: var(--k-color-coral-subtle); color: var(--k-color-coral); }
+.variant-subtle.color-neutral { background-color: var(--k-color-surface-shell); color: var(--k-color-text-secondary); }

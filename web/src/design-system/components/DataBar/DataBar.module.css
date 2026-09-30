@@ -1,0 +1,35 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-8);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: var(--k-font-weight-medium);
+  text-transform: uppercase;
+  color: var(--k-color-text-secondary);
+  letter-spacing: var(--k-tracking-wider);
+}
+
+.value {
+  font-size: var(--k-font-size-xl);
+  font-weight: var(--k-font-weight-bold);
+  line-height: var(--k-line-height-tight);
+  letter-spacing: var(--k-tracking-tight);
+}
+
+.divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--k-color-border-default);
+}
+
+/* Accent colors */
+.accent-mangue .value { color: var(--k-color-text-primary); }

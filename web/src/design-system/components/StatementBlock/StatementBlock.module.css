@@ -1,0 +1,35 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-4);
+}
+
+/* Alignment */
+.align-left { text-align: left; }
+.align-center { text-align: center; }
+
+/* Statement — Apple-style huge bold text */
+.statement {
+  margin: 0;
+  font-size: var(--k-font-size-3xl);
+  font-weight: var(--k-font-weight-bold);
+  letter-spacing: var(--k-tracking-tighter);
+  line-height: var(--k-line-height-snug);
+}
+
+/* Label */
+.label {
+  display: inline-block;
+  font-size: var(--k-font-size-xs);
+  font-weight: var(--k-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--k-tracking-widest);
+  line-height: var(--k-line-height-normal);
+}
+
+/* Color variants — brand workhorse + dark surface inversion */
+.color-mangue .statement { color: var(--k-color-mangue); }
+.color-mangue .label { color: var(--k-color-text-secondary); }
+
+.color-on-dark .statement { color: var(--k-color-text-on-dark); }
+.color-on-dark .label { color: var(--k-color-text-on-dark-muted); }

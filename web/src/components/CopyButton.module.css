@@ -1,0 +1,18 @@
+.button {
+  appearance: none;
+  border: 1px solid var(--k-color-border-input);
+  background: none;
+  color: var(--k-color-text-primary);
+  font-family: var(--k-font-family-mono);
+  font-size: var(--k-font-size-xs);
+  letter-spacing: var(--k-tracking-wide);
+  text-transform: uppercase;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.button:hover {
+  background: var(--k-color-green-karagua-100);
+  border-color: var(--k-color-green-karagua-deep);
+}

@@ -1,0 +1,123 @@
+.back {
+  font-family: var(--k-font-family-mono);
+  font-size: var(--k-font-size-xs);
+  letter-spacing: var(--k-tracking-wide);
+  text-transform: uppercase;
+  color: var(--k-color-text-secondary);
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--k-color-green-karagua-deep);
+}
+
+.head {
+  margin: 16px 0 36px;
+  max-width: 72ch;
+}
+
+.status {
+  font-family: var(--k-font-family-mono);
+  font-size: 11px;
+  letter-spacing: var(--k-tracking-wider);
+  text-transform: uppercase;
+  color: var(--k-color-green-karagua-deep);
+}
+
+.title {
+  margin: 6px 0 12px;
+  font-size: var(--k-font-size-3xl);
+  font-weight: var(--k-font-weight-heavy);
+  line-height: var(--k-line-height-tight);
+  letter-spacing: var(--k-tracking-tighter);
+  text-wrap: balance;
+}
+
+.pauta {
+  margin: 0 0 8px;
+  color: var(--k-color-text-secondary);
+  text-wrap: pretty;
+}
+
+.provenance {
+  margin: 0;
+  font-size: var(--k-font-size-sm);
+  color: var(--k-color-text-secondary);
+}
+
+.provenance a {
+  color: var(--k-color-green-karagua-deep);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 48px);
+}
+
+@media (min-width: 1040px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr) 380px;
+    align-items: start;
+  }
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.block {
+  border-top: 2px solid var(--k-color-surface-carbon);
+  padding-top: 14px;
+}
+
+.blockHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.blockTitle {
+  margin: 0 0 10px;
+  font-family: var(--k-font-family-mono);
+  font-size: var(--k-font-size-xs);
+  font-weight: 500;
+  letter-spacing: var(--k-tracking-wider);
+  text-transform: uppercase;
+  color: var(--k-color-text-primary);
+}
+
+.dl {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  gap: 6px 12px;
+  margin: 0;
+  font-size: var(--k-font-size-sm);
+}
+
+.dl dt {
+  color: var(--k-color-text-secondary);
+}
+
+.dl dd {
+  margin: 0;
+}
+
+.caption {
+  margin: 0 0 10px;
+  white-space: pre-wrap;
+  font-size: var(--k-font-size-sm);
+  line-height: var(--k-line-height-relaxed);
+  text-wrap: pretty;
+}
+
+.hashtags {
+  margin: 0;
+  font-family: var(--k-font-family-mono);
+  font-size: var(--k-font-size-xs);
+  color: var(--k-color-green-karagua-deep);
+  word-spacing: 4px;
+}

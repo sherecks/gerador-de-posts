@@ -1,0 +1,81 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--k-space-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.box {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--k-color-border-input);
+  border-radius: var(--k-radius-none);
+  border-radius: 4px;
+  background-color: var(--k-color-surface-white);
+  position: relative;
+  transition:
+    background-color var(--k-duration-fast) var(--k-ease-spring),
+    border-color var(--k-duration-fast) var(--k-ease-spring),
+    box-shadow var(--k-duration-fast) var(--k-ease-spring);
+}
+
+.box::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--k-color-surface-white);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity var(--k-duration-fast) var(--k-ease-spring);
+}
+
+.input:checked + .box {
+  background-color: var(--k-color-mangue);
+  border-color: var(--k-color-mangue);
+}
+
+.input:checked + .box::after {
+  opacity: 1;
+}
+
+.input:focus-visible + .box {
+  outline: none;
+  box-shadow: var(--k-focus-ring);
+}
+
+.wrapper:hover .box {
+  border-color: var(--k-color-mangue-300);
+}
+
+.input:checked + .box:hover {
+  background-color: var(--k-color-mangue-dark);
+  border-color: var(--k-color-mangue-dark);
+}
+
+.label {
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-base);
+  font-weight: var(--k-font-weight-regular);
+  color: var(--k-color-text-primary);
+  line-height: var(--k-line-height-normal);
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}

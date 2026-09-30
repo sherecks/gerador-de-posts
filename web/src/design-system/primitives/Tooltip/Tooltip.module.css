@@ -1,0 +1,106 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.tip {
+  position: absolute;
+  z-index: var(--k-z-toast);
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-xs);
+  font-weight: var(--k-font-weight-medium);
+  color: var(--k-color-text-on-dark);
+  background-color: var(--k-color-surface-carbon);
+  padding: var(--k-space-1) var(--k-space-2);
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity var(--k-duration-fast) var(--k-ease-out-quart),
+    transform var(--k-duration-fast) var(--k-ease-out-quart);
+}
+
+.tip::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: var(--k-color-surface-carbon);
+  transform: rotate(45deg);
+}
+
+/* Positions */
+.pos-top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+
+.pos-top::after {
+  bottom: -3px;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.pos-bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.pos-bottom::after {
+  top: -3px;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.pos-left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(4px);
+}
+
+.pos-left::after {
+  right: -3px;
+  top: 50%;
+  margin-top: -3px;
+}
+
+.pos-right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+}
+
+.pos-right::after {
+  left: -3px;
+  top: 50%;
+  margin-top: -3px;
+}
+
+/* Show on hover or focus-within; suppress on Esc-dismissed wrapper */
+.wrapper:hover:not(.dismissed) .tip,
+.wrapper:focus-within:not(.dismissed) .tip {
+  opacity: 1;
+}
+
+.wrapper:hover:not(.dismissed) .pos-top,
+.wrapper:focus-within:not(.dismissed) .pos-top {
+  transform: translateX(-50%) translateY(0);
+}
+
+.wrapper:hover:not(.dismissed) .pos-bottom,
+.wrapper:focus-within:not(.dismissed) .pos-bottom {
+  transform: translateX(-50%) translateY(0);
+}
+
+.wrapper:hover:not(.dismissed) .pos-left,
+.wrapper:focus-within:not(.dismissed) .pos-left {
+  transform: translateY(-50%) translateX(0);
+}
+
+.wrapper:hover:not(.dismissed) .pos-right,
+.wrapper:focus-within:not(.dismissed) .pos-right {
+  transform: translateY(-50%) translateX(0);
+}

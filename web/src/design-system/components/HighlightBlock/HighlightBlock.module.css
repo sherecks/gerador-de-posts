@@ -1,0 +1,23 @@
+/* HighlightBlock — full bleed background tint, no side-stripe.
+ * DESIGN.md absolute ban on border-left/right >1px as colored accent. */
+.root {
+  padding: var(--k-space-6) var(--k-space-8);
+  border: 1px solid var(--k-color-border-subtle);
+  border-radius: var(--k-radius-md);
+  font-size: var(--k-font-size-base);
+  line-height: var(--k-line-height-relaxed);
+  color: var(--k-color-text-primary);
+}
+
+/* Variants — brand tint (default) + coral for semantic alerts. */
+.variant-mangue {
+  background: var(--k-color-green-karagua-100);
+  border-color: var(--k-color-green-karagua-300);
+  color: var(--k-color-text-primary);
+}
+
+.variant-coral {
+  background: var(--k-color-coral-subtle);
+  border-color: rgba(232, 93, 74, 0.30);
+  color: var(--k-color-text-primary);
+}

@@ -1,0 +1,52 @@
+/*
+ * Karaguá Design System — Global Styles
+ * Imports the design tokens and sets editorial body baseline.
+ * No legacy presentation/slide rules.
+ */
+
+@import '../design-system/foundations/tokens.css';
+@import '../design-system/foundations/reset.css';
+
+/*
+ * ADX brand fonts (docs/decisions/004). Google Fonts, loaded via <link> in
+ * layout.tsx (matching ADX/design-system.html's own approach — that repo
+ * links these same three families, unhosted, rather than self-hosting like
+ * Aileron). These custom properties are the only thing SlideStage.module.css
+ * reads; the .brandAdx rule there points --slide-font-* at them.
+ */
+:root {
+  --adx-font-display: 'Bebas Neue', sans-serif;
+  --adx-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --adx-font-body: 'IBM Plex Sans', sans-serif;
+}
+
+/* Aileron font (self-hosted in public/fonts/) — 9 weights with italics */
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-Thin.otf') format('opentype'); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-ThinItalic.otf') format('opentype'); font-weight: 100; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-Light.otf') format('opentype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-LightItalic.otf') format('opentype'); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-Italic.otf') format('opentype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-SemiBold.otf') format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-BoldItalic.otf') format('opentype'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-Heavy.otf') format('opentype'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-HeavyItalic.otf') format('opentype'); font-weight: 800; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-Black.otf') format('opentype'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Aileron'; src: url('/fonts/Aileron-BlackItalic.otf') format('opentype'); font-weight: 900; font-style: italic; font-display: swap; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: var(--k-color-surface-shell);
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-base);
+  font-weight: var(--k-font-weight-regular);
+  line-height: var(--k-line-height-relaxed);
+  color: var(--k-color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}

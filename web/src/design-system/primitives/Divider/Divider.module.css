@@ -1,0 +1,19 @@
+.divider {
+  border: none;
+  width: 100%;
+}
+
+/* Thickness */
+.thickness-1 { height: 1px; }
+.thickness-2 { height: 2px; }
+.thickness-3 { height: 3px; }
+
+/* Color */
+.color-default { background-color: var(--k-color-border-default); }
+.color-mangue { background-color: var(--k-color-mangue); }
+.color-subtle { background-color: var(--k-color-border-subtle); }
+
+/* Spacing — generous Apple whitespace */
+.spacing-sm { margin-block: var(--k-space-4); }
+.spacing-md { margin-block: var(--k-space-8); }
+.spacing-lg { margin-block: var(--k-space-16); }

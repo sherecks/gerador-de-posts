@@ -1,0 +1,16 @@
+.root {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: var(--k-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--k-tracking-widest);
+  line-height: var(--k-line-height-normal);
+}
+
+/* Color variants */
+.color-primary { color: var(--k-color-text-primary); }
+.color-secondary { color: var(--k-color-text-secondary); }
+.color-on-dark { color: var(--k-color-text-on-dark-muted); }
+.color-mangue { color: var(--k-color-mangue); }
+.color-cyan { color: var(--k-color-cyan); }
+.color-gold { color: var(--k-color-gold); }

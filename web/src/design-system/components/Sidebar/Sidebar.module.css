@@ -1,0 +1,52 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: var(--k-z-modal);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.wrapper.open {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--k-color-surface-glass-dark);
+  opacity: 0;
+  transition: opacity var(--k-duration-normal) var(--k-ease-standard);
+}
+
+.open .overlay {
+  opacity: 1;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--k-color-surface-elevated);
+  box-shadow: var(--k-shadow-2xl);
+  overflow-y: auto;
+  transition: transform var(--k-duration-normal) var(--k-ease-spring);
+}
+
+.pos-left {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.pos-right {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.open .pos-left {
+  transform: translateX(0);
+}
+
+.open .pos-right {
+  transform: translateX(0);
+}

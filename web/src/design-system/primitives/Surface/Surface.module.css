@@ -1,0 +1,52 @@
+.surface {
+  font-family: var(--k-font-family);
+  transition: box-shadow var(--k-duration-normal) var(--k-ease-out-quart);
+}
+
+/* Backgrounds — pure white prohibited; bg-white now aliases to shell (warm cream).
+ * Flat-at-rest per DESIGN.md; bg-elevated is the only variant that carries shadow
+ * by default, because elevation is semantic for it. */
+.bg-white { background-color: var(--k-color-surface-shell); }
+.bg-shell { background-color: var(--k-color-surface-shell); }
+.bg-fog { background-color: var(--k-color-surface-fog); }
+.bg-elevated {
+  background-color: var(--k-color-surface-elevated);
+  box-shadow: var(--k-shadow-sm);
+}
+.bg-carbon { background-color: var(--k-color-surface-carbon); color: var(--k-color-text-on-dark); }
+.bg-carbon-light { background-color: var(--k-color-surface-carbon-light); color: var(--k-color-text-on-dark); }
+.bg-deep { background-color: var(--k-color-surface-deep); color: var(--k-color-text-on-dark); }
+
+/* Glass — opt-in only, low-blur. DESIGN.md No-Glass-By-Default Rule:
+ * reserved for genuine overlays that need background context bleeding through.
+ * Most surfaces should NOT use this. */
+.bg-glass {
+  background-color: var(--k-color-surface-glass);
+  backdrop-filter: blur(var(--k-blur-sm));
+  -webkit-backdrop-filter: blur(var(--k-blur-sm));
+}
+
+/* Border */
+.border { border: 1px solid var(--k-color-border-default); }
+.bg-carbon.border,
+.bg-carbon-light.border,
+.bg-deep.border { border-color: var(--k-color-border-on-dark); }
+
+/* Radius — sharp by default (DESIGN.md institutional break from Apple-clone) */
+.radius-none { border-radius: var(--k-radius-none); }
+.radius-sm { border-radius: var(--k-radius-sm); }
+.radius-md { border-radius: var(--k-radius-md); }
+.radius-lg { border-radius: var(--k-radius-lg); }
+.radius-xl { border-radius: var(--k-radius-xl); }
+
+/* Shadow */
+.shadow-sm { box-shadow: var(--k-shadow-sm); }
+.shadow-md { box-shadow: var(--k-shadow-md); }
+.shadow-lg { box-shadow: var(--k-shadow-lg); }
+
+/* Padding */
+.padding-none { padding: 0; }
+.padding-sm { padding: var(--k-space-4); }
+.padding-md { padding: var(--k-space-6); }
+.padding-lg { padding: var(--k-space-8); }
+.padding-xl { padding: var(--k-space-12); }

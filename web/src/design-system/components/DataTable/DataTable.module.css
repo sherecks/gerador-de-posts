@@ -1,0 +1,49 @@
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-family: var(--k-font-family);
+  font-size: var(--k-font-size-sm);
+  color: var(--k-color-text-primary);
+}
+
+.th {
+  font-size: var(--k-font-size-xs);
+  font-weight: var(--k-font-weight-semibold);
+  letter-spacing: var(--k-tracking-wider);
+  text-transform: uppercase;
+  color: var(--k-color-text-secondary);
+  padding: var(--k-space-3) var(--k-space-6);
+  border-bottom: 1px solid var(--k-color-border-default);
+  white-space: nowrap;
+}
+
+.td {
+  padding: var(--k-space-4) var(--k-space-6);
+  border-bottom: 1px solid var(--k-color-border-subtle);
+  font-weight: var(--k-font-weight-regular);
+  line-height: var(--k-line-height-normal);
+}
+
+.tr:last-child .td {
+  border-bottom: none;
+}
+
+/* Striped */
+.striped .tr:nth-child(even) .td {
+  background-color: var(--k-color-surface-shell);
+}
+
+/* Hoverable */
+.hoverable .tr {
+  transition: background-color var(--k-duration-fast) var(--k-ease-standard);
+}
+
+.hoverable .tr:hover .td {
+  background-color: var(--k-color-mangue-100);
+}

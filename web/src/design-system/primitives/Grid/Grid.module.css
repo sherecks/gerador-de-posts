@@ -1,0 +1,39 @@
+.grid {
+  display: grid;
+}
+
+/* Columns */
+.columns-1 { grid-template-columns: 1fr; }
+.columns-2 { grid-template-columns: repeat(2, 1fr); }
+.columns-3 { grid-template-columns: repeat(3, 1fr); }
+.columns-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Gap */
+.gap-2 { gap: var(--k-space-2); }
+.gap-4 { gap: var(--k-space-4); }
+.gap-6 { gap: var(--k-space-6); }
+.gap-8 { gap: var(--k-space-8); }
+
+/* Align */
+.align-start { align-items: start; }
+.align-center { align-items: center; }
+.align-end { align-items: end; }
+.align-stretch { align-items: stretch; }
+
+/* Mobile collapse — multi-column grids stack on narrow viewports.
+ * Below 640px every grid becomes a single column. Above 640px and
+ * below 1024px, 3- and 4-column grids relax to 2 columns. */
+@media (max-width: 640px) {
+  .columns-2,
+  .columns-3,
+  .columns-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  .columns-3,
+  .columns-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

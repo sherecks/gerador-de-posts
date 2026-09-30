@@ -1,0 +1,53 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--k-space-4);
+  padding: var(--k-space-8);
+  background: var(--k-color-surface-white);
+  border-radius: var(--k-radius-xl);
+  border: 1px solid var(--k-color-border-default);
+  transition:
+    box-shadow var(--k-duration-normal) var(--k-ease-spring),
+    transform var(--k-duration-normal) var(--k-ease-spring);
+}
+
+.root:hover {
+  box-shadow: var(--k-shadow-lg);
+  transform: translateY(-4px);
+}
+
+/* Icon circle */
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--k-radius-lg);
+  flex-shrink: 0;
+}
+
+/* Title */
+.title {
+  margin: 0;
+  font-size: var(--k-font-size-lg);
+  font-weight: var(--k-font-weight-semibold);
+  line-height: var(--k-line-height-snug);
+  letter-spacing: var(--k-tracking-tight);
+  color: var(--k-color-text-primary);
+}
+
+/* Description */
+.description {
+  margin: 0;
+  font-size: var(--k-font-size-sm);
+  line-height: var(--k-line-height-relaxed);
+  color: var(--k-color-text-secondary);
+}
+
+/* Accent — brand chord only */
+.accent-mangue .iconWrap {
+  background: var(--k-color-mangue-subtle);
+  color: var(--k-color-mangue);
+}

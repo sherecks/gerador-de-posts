@@ -1,0 +1,50 @@
+/*
+ * Karaguá Design System — Minimal Reset
+ * Only normalizes browser defaults. No component styles.
+ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--k-font-family);
+  font-weight: var(--k-font-weight-regular);
+  color: var(--k-color-text-primary);
+  background: var(--k-color-surface-shell);
+  line-height: var(--k-line-height-normal);
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--k-focus-ring);
+}

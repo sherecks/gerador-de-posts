@@ -1,0 +1,124 @@
+.form {
+  display: flex;
+  gap: var(--k-space-3, 12px);
+  max-width: 640px;
+  margin-bottom: var(--k-space-6, 28px);
+}
+
+.brandSelect {
+  flex: 0 0 180px;
+}
+
+.input {
+  flex: 1 1 auto;
+}
+
+.error {
+  margin: 0 0 20px;
+  padding: 12px 16px;
+  background: var(--k-color-coral-subtle);
+  border: 1px solid var(--k-color-coral);
+  color: var(--k-color-text-primary);
+  font-size: var(--k-font-size-sm);
+  max-width: 640px;
+}
+
+.loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.empty {
+  color: var(--k-color-text-secondary);
+  font-size: var(--k-font-size-sm);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-4, 16px);
+  max-width: 760px;
+}
+
+.card {
+  border: 1px solid var(--k-color-border-default);
+  padding: var(--k-space-5, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: var(--k-font-size-md);
+  font-weight: var(--k-font-weight-semibold);
+  line-height: var(--k-line-height-snug);
+}
+
+.relevancia {
+  flex: 0 0 auto;
+  font-family: var(--k-font-family-mono);
+  font-size: var(--k-font-size-xs);
+  letter-spacing: var(--k-tracking-wide);
+  text-transform: uppercase;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.relevancia_alta {
+  background: var(--k-color-green-karagua-100);
+  color: var(--k-color-green-karagua-deep);
+}
+
+.relevancia_media {
+  background: var(--k-color-surface-fog);
+  color: var(--k-color-text-secondary);
+}
+
+.relevancia_baixa {
+  background: var(--k-color-surface-fog);
+  color: var(--k-color-text-tertiary);
+}
+
+.meta {
+  font-family: var(--k-font-family-mono);
+  font-size: var(--k-font-size-xs);
+  color: var(--k-color-text-secondary);
+}
+
+.resumo {
+  margin: 0;
+  font-size: var(--k-font-size-sm);
+}
+
+.porque {
+  margin: 0;
+  font-size: var(--k-font-size-sm);
+  color: var(--k-color-text-secondary);
+  font-style: italic;
+}
+
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-3, 12px);
+  margin-top: 4px;
+}
+
+.link {
+  font-family: var(--k-font-family-mono);
+  font-size: var(--k-font-size-xs);
+  color: var(--k-color-green-karagua-deep);
+}
+
+.useButton {
+  margin-left: auto;
+}
